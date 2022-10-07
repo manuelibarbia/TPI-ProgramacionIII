@@ -6,7 +6,7 @@ namespace TPIntegradorProgIII.Controllers
 {
     public class SwimmerController : Controller
     {
-        List<Swimmer> cats = new List<Swimmer>
+        List<Swimmer> swimmers = new List<Swimmer>
        {
         new Swimmer{ SwimmerID = 0, Name = "Matias", Surname = "Peralta", Document = 40555666, Phone = "3413334455", Adress = "HolaMundo al 1100", Birth = "10/10/2010" },
         new Swimmer{ SwimmerID = 1, Name = "Lucho", Surname = "Peralta", Document = 41555666, Phone = "3413334456", Adress = "HolaMundo al 1200", Birth = "10/10/2012" },
@@ -18,34 +18,26 @@ namespace TPIntegradorProgIII.Controllers
             return View();
         }
         [HttpGet("[controller]/List")]
-        public IEnumerable<WeatherForecast> List()
+        public IEnumerable<Swimmer> List()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55)
-            })
-            .ToArray();
+            return swimmers;
         }
-        [HttpGet("[controller]/Delete")]
-        public IEnumerable<WeatherForecast> Delete()
+        [HttpGet("[controller]/Delete/{id}")]
+        public IEnumerable<Swimmer> Delete(int id)
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55)
-            })
-            .ToArray();
+            return swimmers;
         }
-        [HttpGet("[controller]/Createe")]
-        public IEnumerable<WeatherForecast> Createe()
+        [HttpGet("[controller]/Createe/{Name}/{Surname}/{Document}")]
+        public IEnumerable<Swimmer> Create(string Name, string Surname, int Document)
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55)
-            })
-            .ToArray();
+            Swimmer s = new Swimmer();
+            s.Name = Name;
+            s.Surname = Surname;
+            s.Document = Document;
+
+            swimmers.Add(s);
+
+            return swimmers;
         }
 
         // GET: SwimmerController/Details/5
@@ -55,10 +47,6 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         // GET: SwimmerController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
 
         // POST: SwimmerController/Create
         [HttpPost]
@@ -97,10 +85,6 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         // GET: SwimmerController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
 
         // POST: SwimmerController/Delete/5
         [HttpPost]
