@@ -9,7 +9,7 @@ namespace TPIntegradorProgIII.Entities
     public class Meet
     {
         public int MeetID { get; set; }
-        public DateTime MeetDate { get; set; }
+        public string MeetDate { get; set; }
         public string Category { get; set; }
     }
 }

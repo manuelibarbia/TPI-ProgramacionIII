@@ -12,22 +12,25 @@ namespace TPIntegradorProgIII.Controllers
         new Swimmer{ SwimmerID = 1, Name = "Lucho", Surname = "Peralta", Document = 41555666, Phone = "3413334456", Adress = "HolaMundo al 1200", Birth = "10/10/2012" },
         new Swimmer{ SwimmerID = 2, Name = "Mati", Surname = "Solari", Document = 42555666, Phone = "3413334457", Adress = "HolaMundo al 1300", Birth = "10/10/2014", }
         };
-        // GET: SwimmerController
         public ActionResult Index()
         {
             return View();
         }
+
         [HttpGet("[controller]/List")]
+        // GET: SwimmerController
         public IEnumerable<Swimmer> List()
         {
             return swimmers;
         }
+
         [HttpGet("[controller]/Delete/{id}")]
         public IEnumerable<Swimmer> Delete(int id)
         {
             return swimmers;
         }
-        [HttpGet("[controller]/Createe/{Name}/{Surname}/{Document}")]
+
+        [HttpGet("[controller]/Create/{Name}/{Surname}/{Document}")]
         public IEnumerable<Swimmer> Create(string Name, string Surname, int Document)
         {
             Swimmer s = new Swimmer();
