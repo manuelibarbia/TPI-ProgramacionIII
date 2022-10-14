@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TPIntegradorProgIII.Entities
+﻿namespace TPIntegradorProgIII.Models
 {
-    public class Swimmer : User
+    public class SwimmerDto
     {
         public int SwimmerID { get; set; }
         public string Name { get; set; }
@@ -15,5 +9,13 @@ namespace TPIntegradorProgIII.Entities
         public string Phone { get; set; }
         public string Adress { get; set; }
         public string Birth { get; set; }
+
+        public string CompleteName
+        {
+            get 
+            { 
+                return Name + " " + Surname; 
+            }
+        }
     }
 }

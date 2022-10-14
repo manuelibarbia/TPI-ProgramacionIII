@@ -30,13 +30,17 @@ namespace TPIntegradorProgIII.Controllers
             return swimmers;
         }
 
-        [HttpGet("[controller]/Create/{Name}/{Surname}/{Document}")]
-        public IEnumerable<Swimmer> Create(string Name, string Surname, int Document)
+        [HttpGet("[controller]/Create/{SwimmerID}/{Name}/{Surname}/{Document}/{Phone}/{Adress}/{Birth}")]
+        public ICollection<Swimmer> Create(int SwimmerID, string Name, string Surname, int Document, string Phone, string Adress, string Birth)
         {
             Swimmer s = new Swimmer();
+            s.SwimmerID = SwimmerID;
             s.Name = Name;
             s.Surname = Surname;
             s.Document = Document;
+            s.Phone = Phone;
+            s.Adress = Adress;
+            s.Birth = Birth;
 
             swimmers.Add(s);
 

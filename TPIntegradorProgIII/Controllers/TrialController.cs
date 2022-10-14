@@ -4,13 +4,13 @@ using TPIntegradorProgIII.Entities;
 
 namespace TPIntegradorProgIII.Controllers
 {
-    public class MeetController : Controller
+    public class TrialController : Controller
     {
-        List<Meet> meets = new List<Meet>
-        {
-            new Meet { MeetID = 0, MeetDate = "20-11-2022", MeetPlace = "Club Regatas Rosario"},
-            new Meet { MeetID = 1, MeetDate = "25-11-2022", MeetPlace = "Náutico Sportivo Avellaneda"},
-            new Meet { MeetID = 2, MeetDate = "30-11-2022", MeetPlace = "GER"}
+        List<Trial> trials = new List<Trial>
+       {
+        new Trial{ TrialID = 0, Distance= 100, Gender = "Masculino", Category = "Juvenil", Style = "Croll" },
+        new Trial{ TrialID = 1, Distance= 100, Gender = "Femenino", Category = "Mayores", Style = "Croll" },
+        new Trial{ TrialID = 2, Distance= 100, Gender = "Masculino", Category = "Juvenilt", Style = "Croll" }
         };
         public ActionResult Index()
         {
@@ -18,40 +18,42 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [HttpGet("[controller]/List")]
-        // GET: MeetController
-        public IEnumerable<Meet> List()
+        // GET: TrialController
+        public IEnumerable<Trial> List()
         {
-            return meets;
+            return trials;
         }
 
         [HttpGet("[controller]/Delete/{id}")]
-        public IEnumerable<Meet> Delete(int id)
+        public IEnumerable<Trial> Delete(int id)
         {
-            return meets;
+            return trials;
         }
 
-        [HttpGet("[controller]/Create/{MeetID}/{MeetDate}/{MeetPlace}")]
-        public ICollection<Meet> Create(int MeetID, string MeetDate, string MeetPlace)
+        [HttpGet("[controller]/Create/{TrialID}/{Distance}/{Gender}/{Category}/{Style}")]
+        public ICollection<Trial> Create(int TrialID, int Distance, string Gender, string Category, string Style)
         {
-            Meet m = new Meet();
-            m.MeetID = MeetID;
-            m.MeetDate = MeetDate;
-            m.MeetPlace = MeetPlace;
+            Trial t = new Trial();
+            t.TrialID = TrialID;
+            t.Distance = Distance;
+            t.Gender = Gender;
+            t.Category = Category;
+            t.Style = Style;
 
-            meets.Add(m);
+            trials.Add(t);
 
-            return meets;
+            return trials;
         }
 
-        // GET: MeetController/Details/5
+        // GET: TrialController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: MeetController/Create
+        // GET: TrialController/Create
 
-        // POST: MeetController/Createº 
+        // POST: TrialController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -66,13 +68,13 @@ namespace TPIntegradorProgIII.Controllers
             }
         }
 
-        // GET: MeetController/Edit/5
+        // GET: TrialController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: MeetController/Edit/5
+        // POST: TrialController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -87,9 +89,9 @@ namespace TPIntegradorProgIII.Controllers
             }
         }
 
-        // GET: MeetController/Delete/5
+        // GET: TrialController/Delete/5
 
-        // POST: MeetController/Delete/5
+        // POST: TrialController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
