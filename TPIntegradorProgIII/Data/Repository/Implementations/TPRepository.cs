@@ -1,12 +1,13 @@
 ﻿using TPIntegradorProgIII.Data.Repository.Interfaces;
+using TPIntegradorProgIII.DBContexts;
 
-namespace TPIntegradorProgIII.Data.Repository.Implementations
+namespace TPIntegradorProgIII.Data.Repository
 {
-    public class Repository : IRepository
+    public class TPRepository : IRepository
     {
-        internal readonly StudentsQuestionsContext _context;
+        internal readonly TPContext _context;
 
-        public Repository(StudentsQuestionsContext context)
+        public TPRepository(TPContext context)
         {
             this._context = context;
         }

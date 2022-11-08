@@ -1,17 +1,15 @@
-﻿using TPIntegradorProgIII.API.Entities;
-using TPIntegradorProgIII.API.Models;
-using TPIntegradorProgIII.API.Services.Interfaces;
+﻿using TPIntegradorProgIII.Entities;
+using TPIntegradorProgIII.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using TPIntegradorProgIII.Data.Repository.Interfaces;
 
-namespace ConsultaAlumnos.API.Controllers
+namespace TPIntegradorProgIII.Data.Repository
 {
-    [Route("api/authentication")]
-    [ApiController]
-    public class AuthenticationController : ControllerBase
+    public interface IMeetRepository : IRepository
     {
         private readonly IConfiguration _config;
         private readonly ICustomAuthenticationService _customAuthenticationService;

@@ -104,6 +104,19 @@ namespace TPIntegradorProgIII.DBContexts
                         }
                     ));
 
+            modelBuilder.Entity<Swimmer>()
+                .HasMany(x => x.MeetsAttended)
+                .WithMany(x => x.ParticipantSwimmers)
+                .UsingEntity(j => j
+                    .ToTable("ParticipantsSwimmersMeetsAttended")
+                    .HasData(new[]
+                        {
+                            new { MeetsAttended = 4, ParticipantSwimmers = 1},
+                            new { MeetsAttended= 5, ParticipantSwimmers = 1},
+                            new { MeetsAttended = 4, ParticipantSwimmers = 2},
+                        }
+                    ));
+
             base.OnModelCreating(modelBuilder);
         }
     }
