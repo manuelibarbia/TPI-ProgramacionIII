@@ -2,6 +2,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using TPIntegradorProgIII.Helpers;
+using TPIntegradorProgIII.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,7 +61,6 @@ if (app.Environment.IsDevelopment())
 
 #region Injection
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
-builder.Services.AddSingleton<Security>();
 
 app.UseHttpsRedirection();
 

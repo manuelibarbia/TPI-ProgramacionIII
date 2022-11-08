@@ -1,25 +1,25 @@
-﻿using AgendaDemo.Entities;
-using AgendaDemo.Models;
-using AgendaDemo.Repository;
+﻿using TPIntegradorProgIII.Entities;
+using TPIntegradorProgIII.Models;
+using TPIntegradorProgIII.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TPIntegradorProgIII.Entities;
 using TPIntegradorProgIII.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TPIntegradorProgIII.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
 
         private readonly IUserRepository _userRepository;
-        private readonly Security _security;
 
-        public UserController(UserRepository userRepository, Security security)
+        public UserController(UserRepository userRepository)
         {
             _userRepository = userRepository;
-            _security = security;
         }
         [HttpPost]
         public IActionResult AddUser(AddUserRequest dto)
@@ -32,7 +32,7 @@ namespace TPIntegradorProgIII.Controllers
                     BirthDate = dto.BirthDate,
                     CreatedDate = DateTime.Now,
                     Id = users.Max(x => x.Id) + 1,
-                    Password = _security.CreateSHA512(dto.Password + "salt"),
+                    Password = dto.Password,
                     UserName = dto.UserName,
                 };
                 _userRepository.Add(user);

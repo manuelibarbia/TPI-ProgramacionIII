@@ -3,9 +3,9 @@ using System.Text;
 
 namespace TPIntegradorProgIII.Helpers
 {
-    public class Security
+    public static class Security
     {
-        public string CreateSHA512(string strData)
+        public static string CreateSHA512(string strData)
         {
             var message = Encoding.UTF8.GetBytes(strData);
             using (var alg = SHA512.Create())
