@@ -10,20 +10,8 @@ namespace TPIntegradorProgIII.Entities
 {
     public class Swimmer : User
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int SwimmerID { get; set; }
-        [Required]
-        public string Name { get; set; }
-        [Required]
-        public string Surname { get; set; }
-        [Required]
-        public int Document { get; set; }
-        public string Phone { get; set; }
-        public string Adress { get; set; }
-        public string Birth { get; set; }
-        [ForeignKey("UserId")]
-        public User User { get; set; }
-        public int UserId { get; set; }
+        // public ICollection<Swimmer> Swimmers { get; set; } un usuario va a tener un solo swimmer
+        public ICollection<Meet> MeetsAttended { get; set; } = new List<Meet>();
+        public ICollection<Trial> TrialsAttended { get; set; } = new List<Trial>();
     }
 }

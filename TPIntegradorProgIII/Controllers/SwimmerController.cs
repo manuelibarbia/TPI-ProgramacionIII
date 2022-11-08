@@ -17,21 +17,8 @@ namespace TPIntegradorProgIII.Controllers
             return View();
         }
 
-        [HttpGet("[controller]/List")]
-        // GET: SwimmerController
-        public IEnumerable<Swimmer> List()
-        {
-            return swimmers;
-        }
-
-        [HttpGet("[controller]/Delete/{id}")]
-        public IEnumerable<Swimmer> Delete(int id)
-        {
-            return swimmers;
-        }
-
         [HttpGet("[controller]/Create/{SwimmerID}/{Name}/{Surname}/{Document}/{Phone}/{Adress}/{Birth}")]
-        public ICollection<Swimmer> Create(int SwimmerID, string Name, string Surname, int Document, string Phone, string Adress, string Birth)
+        public ICollection<Swimmer> Create(int SwimmerID, string Name, string Surname, int Document, string Phone, string Adress, string Birth) //ALTA
         {
             Swimmer s = new Swimmer();
             s.SwimmerID = SwimmerID;
@@ -44,6 +31,49 @@ namespace TPIntegradorProgIII.Controllers
 
             swimmers.Add(s);
 
+            return swimmers;
+        }
+
+        [HttpGet("[controller]/Delete/{id}")]
+        public IEnumerable<Swimmer> Delete(int id) //BAJA
+        {
+            return swimmers;
+        }
+
+
+
+        [HttpPut("{swimmerId}/changestatus")]
+        public ActionResult<QuestionDto> ChangeQuestionStatus(int questionId, QuestionStatusDto newStatus) //MODIFICACIÓN
+        {
+            _questionService.ChangeQuestionStatus(questionId, newStatus.Status);
+
+            return NoContent();
+        }
+
+        [HttpPost]
+        public ActionResult<QuestionDto> CreateQuestion(QuestionForCreationDto newQuestion)  //CONSULTA
+        {
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (!int.TryParse(userIdClaim, out int userId))
+            {
+                return Unauthorized();
+            }
+
+            var createdQuestion = _questionService.CreateQuestion(newQuestion, userId);
+
+            return CreatedAtRoute(//CreatedAtRoute es para q devuelva 201, el 200 de post.
+                "GetQuestion", //El primer parámetro es el Name del endpoint que hace el Get
+                new //El segundo los parametros q necesita ese endpoint
+                {
+                    questionId = createdQuestion.Id
+                },
+                createdQuestion);//El tercero es el objeto creado. 
+        }
+
+        [HttpGet("[controller]/List")]
+        // GET: SwimmerController
+        public IEnumerable<Swimmer> List()
+        {
             return swimmers;
         }
 

@@ -13,14 +13,23 @@ namespace TPIntegradorProgIII.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TrialID { get; set; }
+
         [Required]
         public int Distance { get; set; }
-        [Required]
-        public string Gender { get; set; }
-        [Required]
-        public string Category { get; set; }
+
         [Required]
         public string Style { get; set; }
-        List<Trial> Times = new List<Trial>();
+
+        public ICollection<Swimmer> RegisteredSwimmers { get; set; } = new List<Swimmer>();
+
+        // Cada trial va a tener un único meet
+        [ForeignKey("MeetId")]
+        public Meet Meet { get; set; }
+        public int MeetId { get; set; }
+
+
+        //[ForeignKey("UserId")]
+        //public User User { get; set; }
+        //public int UserId { get; set; }
     }
 }

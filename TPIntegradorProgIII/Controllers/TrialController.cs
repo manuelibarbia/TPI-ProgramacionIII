@@ -17,21 +17,8 @@ namespace TPIntegradorProgIII.Controllers
             return View();
         }
 
-        [HttpGet("[controller]/List")]
-        // GET: TrialController
-        public IEnumerable<Trial> List()
-        {
-            return trials;
-        }
-
-        [HttpGet("[controller]/Delete/{id}")]
-        public IEnumerable<Trial> Delete(int id)
-        {
-            return trials;
-        }
-
-        [HttpGet("[controller]/Create/{TrialID}/{Distance}/{Gender}/{Category}/{Style}")]
-        public ICollection<Trial> Create(int TrialID, int Distance, string Gender, string Category, string Style)
+        [HttpGet("[controller]/Create/{TrialID}/{Distance}/{Gender}/{Category}/{Style}")] //ALTA
+        public ICollection<Trial> Create(int TrialID, int Distance, string Gender, string Category, string Style) 
         {
             Trial t = new Trial();
             t.TrialID = TrialID;
@@ -44,6 +31,49 @@ namespace TPIntegradorProgIII.Controllers
 
             return trials;
         }
+
+        [HttpGet("[controller]/Delete/{id}")] //BAJA
+        public IEnumerable<Trial> Delete(int id)
+        {
+            return trials;
+        }
+
+        [HttpPut("{swimmerId}/changestatus")]
+        public ActionResult<QuestionDto> ChangeQuestionStatus(int questionId, QuestionStatusDto newStatus) //MODIFICACIÓN
+        {
+            _questionService.ChangeQuestionStatus(questionId, newStatus.Status);
+
+            return NoContent();
+        }
+
+        [HttpPost]
+        public ActionResult<QuestionDto> CreateQuestion(QuestionForCreationDto newQuestion)  //CONSULTA
+        {
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (!int.TryParse(userIdClaim, out int userId))
+            {
+                return Unauthorized();
+            }
+
+            var createdQuestion = _questionService.CreateQuestion(newQuestion, userId);
+
+            return CreatedAtRoute(//CreatedAtRoute es para q devuelva 201, el 200 de post.
+                "GetQuestion", //El primer parámetro es el Name del endpoint que hace el Get
+                new //El segundo los parametros q necesita ese endpoint
+                {
+                    questionId = createdQuestion.Id
+                },
+                createdQuestion);//El tercero es el objeto creado. 
+        }
+
+        [HttpGet("[controller]/List")]
+        // GET: TrialController
+        public IEnumerable<Trial> List()
+        {
+            return trials;
+        }
+
+        
 
         // GET: TrialController/Details/5
         public ActionResult Details(int id)

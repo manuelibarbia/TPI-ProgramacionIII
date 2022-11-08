@@ -11,11 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 builder.Services.AddSwaggerGen(setupAction =>
 {
-    setupAction.AddSecurityDefinition("ConsultaAlumnosApiBearerAuth", new OpenApiSecurityScheme() //Esto va a permitir usar swagger con el token.
+    setupAction.AddSecurityDefinition("TPIntegradorProgIII", new OpenApiSecurityScheme() //Esto va a permitir usar swagger con el token.
     {
         Type = SecuritySchemeType.Http,
         Scheme = "Bearer",
@@ -30,7 +29,7 @@ builder.Services.AddSwaggerGen(setupAction =>
                 Reference = new OpenApiReference
                 {
                     Type = ReferenceType.SecurityScheme,
-                    Id = "ConsultaAlumnosApiBearerAuth" } //Tiene que coincidir con el id seteado arriba en la definición
+                    Id = "TPIntegradorProgIII" } //Tiene que coincidir con el id seteado arriba en la definición
                 }, new List<string>() }
     });
 });
