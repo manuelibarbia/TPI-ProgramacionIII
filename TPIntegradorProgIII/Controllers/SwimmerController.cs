@@ -1,141 +1,43 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TPIntegradorProgIII.Entities;
+using System.Security.Claims;
+using TPIntegradorProgIII.Models;
+using TPIntegradorProgIII.Services.Interfaces;
 
 namespace TPIntegradorProgIII.Controllers
 {
-    public class SwimmerController : Controller
+    [Route("api/swimmer")]
+    [ApiController]
+    [Authorize]
+    public class SwimmerController : ControllerBase
     {
-        List<Swimmer> swimmers = new List<Swimmer>
-       {
-        new Swimmer{ SwimmerID = 0, Name = "Matias", Surname = "Peralta", Document = 40555666, Phone = "3413334455", Adress = "HolaMundo al 1100", Birth = "10/10/2010" },
-        new Swimmer{ SwimmerID = 1, Name = "Lucho", Surname = "Peralta", Document = 41555666, Phone = "3413334456", Adress = "HolaMundo al 1200", Birth = "10/10/2012" },
-        new Swimmer{ SwimmerID = 2, Name = "Mati", Surname = "Solari", Document = 42555666, Phone = "3413334457", Adress = "HolaMundo al 1300", Birth = "10/10/2014", }
-        };
-        public ActionResult Index()
+        private readonly ISwimmerService _swimmerService;
+        public SwimmerController(ISwimmerService swimmerService)
         {
-            return View();
+            this._swimmerService = swimmerService;
         }
 
-        [HttpGet("[controller]/Create/{SwimmerID}/{Name}/{Surname}/{Document}/{Phone}/{Adress}/{Birth}")]
-        public ICollection<Swimmer> Create(int SwimmerID, string Name, string Surname, int Document, string Phone, string Adress, string Birth) //ALTA
+        [HttpGet("meets")]
+        public ActionResult<ICollection<MeetDto>> GetMeets()  //Chequear si está bien (copiado de ConsultaAlumnos)
         {
-            Swimmer s = new Swimmer();
-            s.SwimmerID = SwimmerID;
-            s.Name = Name;
-            s.Surname = Surname;
-            s.Document = Document;
-            s.Phone = Phone;
-            s.Adress = Adress;
-            s.Birth = Birth;
+            var user = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+            if (userRole != "nadador")
+                return Forbid();
 
-            swimmers.Add(s);
-
-            return swimmers;
+            return _swimmerService.GetMeetsBySwimmer(int.Parse(user)).ToList();
         }
 
-        [HttpGet("[controller]/Delete/{id}")]
-        public IEnumerable<Swimmer> Delete(int id) //BAJA
+        public ActionResult<ICollection<TrialDto>> GetTrials()  // Chequear si está bien (copiado de ConsultaAlumnos)
         {
-            return swimmers;
-        }
+            var user = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+            if (userRole != "nadador")
+                return Forbid();
 
-
-
-        [HttpPut("{swimmerId}/changestatus")]
-        public ActionResult<QuestionDto> ChangeQuestionStatus(int questionId, QuestionStatusDto newStatus) //MODIFICACIÓN
-        {
-            _questionService.ChangeQuestionStatus(questionId, newStatus.Status);
-
-            return NoContent();
-        }
-
-        [HttpPost]
-        public ActionResult<QuestionDto> CreateQuestion(QuestionForCreationDto newQuestion)  //CONSULTA
-        {
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            if (!int.TryParse(userIdClaim, out int userId))
-            {
-                return Unauthorized();
-            }
-
-            var createdQuestion = _questionService.CreateQuestion(newQuestion, userId);
-
-            return CreatedAtRoute(//CreatedAtRoute es para q devuelva 201, el 200 de post.
-                "GetQuestion", //El primer parámetro es el Name del endpoint que hace el Get
-                new //El segundo los parametros q necesita ese endpoint
-                {
-                    questionId = createdQuestion.Id
-                },
-                createdQuestion);//El tercero es el objeto creado. 
-        }
-
-        [HttpGet("[controller]/List")]
-        // GET: SwimmerController
-        public IEnumerable<Swimmer> List()
-        {
-            return swimmers;
-        }
-
-        // GET: SwimmerController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: SwimmerController/Create
-
-        // POST: SwimmerController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: SwimmerController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: SwimmerController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: SwimmerController/Delete/5
-
-        // POST: SwimmerController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return _swimmerService.GetTrialsBySwimmer(int.Parse(user)).ToList();
         }
     }
 }

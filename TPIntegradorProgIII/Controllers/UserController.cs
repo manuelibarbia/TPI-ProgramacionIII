@@ -1,6 +1,6 @@
 ﻿using TPIntegradorProgIII.Entities;
 using TPIntegradorProgIII.Models;
-using TPIntegradorProgIII.Repository;
+using TPIntegradorProgIII.Data.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TPIntegradorProgIII.Entities;
