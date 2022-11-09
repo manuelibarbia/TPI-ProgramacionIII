@@ -11,21 +11,18 @@ namespace TPIntegradorProgIII.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
-        public string Name { get; set; }
-
-        [Required]
-        public string Surname { get; set; }
-
-        [Required]
-        public string Email { get; set; }
-
-        [Required]
         private string _Password;
-        public string Password {
+        public string Password
+        {
             get { return _Password; }
-            set { _Password = Security.CreateSHA512(value);}
+            set { _Password = Security.CreateSHA512(value); }
         }
+
+
+        [Required] // ¿Required se pone una única vez o en cada variable requerida?
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Email { get; set; }
         public string UserType { get; set; } // ¿Para qué sirve? ¿Lo necesitamos?
     }
 }
