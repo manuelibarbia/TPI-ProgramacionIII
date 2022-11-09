@@ -1,8 +1,15 @@
 using Microsoft.IdentityModel.Tokens;
+using TPIntegradorProgIII.Services.Implementations;
+using TPIntegradorProgIII.Data.Repository.Interfaces;
+using TPIntegradorProgIII.DBContexts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
-using TPIntegradorProgIII.Helpers;
-using TPIntegradorProgIII.Repository;
+using System.Text.Json.Serialization;
+using TPIntegradorProgIII.Data.Repository.Implementations;
+using TPIntegradorProgIII.Services.Interfaces;
+using TPIntegradorProgIII.Data.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +18,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
 builder.Services.AddSwaggerGen(setupAction =>
 {
-    setupAction.AddSecurityDefinition("TPIntegradorProgIII", new OpenApiSecurityScheme() //Esto va a permitir usar swagger con el token.
+    setupAction.AddSecurityDefinition("TPIntegradorProgIIIBearerAuth", new OpenApiSecurityScheme() //Esto va a permitir usar swagger con el token.
     {
         Type = SecuritySchemeType.Http,
         Scheme = "Bearer",
@@ -29,10 +35,13 @@ builder.Services.AddSwaggerGen(setupAction =>
                 Reference = new OpenApiReference
                 {
                     Type = ReferenceType.SecurityScheme,
-                    Id = "TPIntegradorProgIII" } //Tiene que coincidir con el id seteado arriba en la definición
+                    Id = "TPIntegradorProgIIIBearerAuth" } //Tiene que coincidir con el id seteado arriba en la definición
                 }, new List<string>() }
     });
 });
+
+builder.Services.AddDbContext<TPContext>(dbContextOptions => dbContextOptions.UseSqlite(
+    builder.Configuration["ConnectionStrings:TPIntegradorDBConnectionString"]));
 
 builder.Services.AddAuthentication("Bearer") //"Bearer" es el tipo de auntenticación que tenemos que elegir después en PostMan para pasarle el token
     .AddJwtBearer(options => //Acá definimos la configuración de la autenticación. le decimos qué cosas queremos comprobar. La fecha de expiración se valida por defecto.
@@ -49,6 +58,24 @@ builder.Services.AddAuthentication("Bearer") //"Bearer" es el tipo de auntentica
     }
 );
 
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); //DA ERROR
+
+#region Repositories
+builder.Services.AddScoped<IMeetRepository, MeetRepository>();
+builder.Services.AddScoped<ITrialRepository, TrialRepository>();
+builder.Services.AddScoped<ISwimmerRepository, SwimmerRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+#endregion
+
+#region Services
+builder.Services.AddScoped<ICustomAuthenticationService, AutenticacionService>();
+builder.Services.AddScoped<ISwimmerService, SwimmerService>();
+#endregion
+
+builder.Services.AddHttpContextAccessor();
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -58,10 +85,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-#region Injection
-builder.Services.AddSingleton<IUserRepository, UserRepository>();
+builder.Services.AddSingleton<IUserRepository, UserRepository>(); // ¿Lo dejamos? ¿Para qué es?
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
