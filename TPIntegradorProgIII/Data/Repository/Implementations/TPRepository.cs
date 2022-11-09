@@ -3,7 +3,7 @@ using TPIntegradorProgIII.DBContexts;
 
 namespace TPIntegradorProgIII.Data.Repository
 {
-    public class TPRepository : IRepository
+    public class TPRepository : ITPRepository
     {
         internal readonly TPContext _context;
 

@@ -1,6 +1,6 @@
 ﻿namespace TPIntegradorProgIII.Data.Repository.Interfaces
 {
-    public interface IRepository
+    public interface ITPRepository
     {
         bool SaveChanges();
     }

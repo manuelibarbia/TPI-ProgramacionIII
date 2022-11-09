@@ -11,7 +11,5 @@ namespace TPIntegradorProgIII.Data.Repository
         public MeetRepository(TPContext context) : base(context)
         {
         }
-
-
     }
 }
