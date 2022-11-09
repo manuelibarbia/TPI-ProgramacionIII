@@ -1,6 +1,6 @@
 ﻿namespace TPIntegradorProgIII.Models
 {
-    public class UserResponse
+    public class UserResponse  // ¿Lo necesitamos?
     {
         public int Id { get; set; }
         public string UserName { get; set; }
