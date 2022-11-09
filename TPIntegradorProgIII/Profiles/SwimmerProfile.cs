@@ -8,7 +8,7 @@ namespace TPIntegradorProgIII.Profiles
     {
         public SwimmerProfile()
         {
-            CreateMap<Swimmer, SwimmerDto>
+            CreateMap<Swimmer, SwimmerDto>();
         }
     }
 }
