@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-public class Class1
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TPIntegradorProgIII.Models
 {
-	public Class1()
+	public class AuthenticationRequestBody
 	{
-		public string Password { get; set; }
-		public string UserName { get; set; }
+        [Required]
+		public string? Email { get; set; }
+        [Required]
+		public string? Password { get; set; }
+		public string UserType { get; set; } //¿Para qué sirve? ¿Lo necesitamos?
 	}
 }
+

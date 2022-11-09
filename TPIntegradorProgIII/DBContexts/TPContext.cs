@@ -95,7 +95,7 @@ namespace TPIntegradorProgIII.DBContexts
                 .HasMany(x => x.ParticipantSwimmers)
                 .WithMany(x => x.MeetsAttended)
                 .UsingEntity(j => j
-                    .ToTable("ParticipantsSwimmersMeetsAttended")
+                    .ToTable("ParticipantSwimmersMeetsAttended")
                     .HasData(new[]
                         {
                             new { ParticipantSwimmersId = 4, MeetsAttendedId = 1},

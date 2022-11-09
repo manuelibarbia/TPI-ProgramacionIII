@@ -26,6 +26,6 @@ namespace TPIntegradorProgIII.Entities
             get { return _Password; }
             set { _Password = Security.CreateSHA512(value);}
         }
-        public string UserType { get; set; }
+        public string UserType { get; set; } // ¿Para qué sirve? ¿Lo necesitamos?
     }
 }
