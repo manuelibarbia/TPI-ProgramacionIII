@@ -21,7 +21,7 @@ namespace TPIntegradorProgIII.Services.Implementations
                 result.Add(new MeetDto()
                 {
                     MeetDate = meet.MeetDate,
-                    MeetID = meet.MeetID,
+                    Id = meet.Id,
                     MeetName = meet.MeetName,
                     MeetPlace = meet.MeetPlace,
                     ParticipantSwimmers = meet.ParticipantSwimmers
@@ -40,7 +40,7 @@ namespace TPIntegradorProgIII.Services.Implementations
             {
                 result.Add(new TrialDto()
                 {
-                    TrialID = trial.TrialID,
+                    Id = trial.Id,
                     Distance = trial.Distance,
                     RegisteredSwimmers = trial.RegisteredSwimmers,
                     Style = trial.Style

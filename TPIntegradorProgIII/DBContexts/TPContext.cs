@@ -51,33 +51,33 @@ namespace TPIntegradorProgIII.DBContexts
                     MeetName = "Encuentro 2",
                     MeetDate = "15/12/23",
                     MeetPlace = "Rosario",
-                    MeetID = 4
+                    Id = 4
                 },
                 new Meet
                 {
                     MeetName = "Encuentro 1",
                     MeetDate = "10/11/23",
                     MeetPlace = "Rosario",
-                    MeetID = 5
+                    Id = 5
                 });
 
             modelBuilder.Entity<Trial>().HasData(
                 new Trial
                 {
-                    TrialID = 1,
+                    Id = 1,
                     Distance = 100,
                     Style = "Croll"
                 },
                 new Trial
                 {
-                    TrialID = 2,
+                    Id = 2,
                     Distance = 150,
                     Style = "Croll"
                 });
 
-            modelBuilder.Entity<Meet>()
-                .HasMany<Trial>(u => u.Trials)
-                .WithOne(c => c.Meet);
+            //modelBuilder.Entity<Meet>()
+            //    .HasMany<Trial>(u => u.Trials)
+            //    .WithOne(c => c.Meet);
 
             modelBuilder.Entity<Trial>()
                 .HasMany(x => x.RegisteredSwimmers)
@@ -87,22 +87,22 @@ namespace TPIntegradorProgIII.DBContexts
                     .HasData(new[]
                         {
                             new { RegisteredSwimmersId = 1, TrialsAttendedId = 1},
-                            new { RegisteredSwimmersId = 1, TrialsAttendedId = 2},
+                            new { RegisteredSwimmersId = 2, TrialsAttendedId = 2},
                         }
                     ));
 
-            modelBuilder.Entity<Meet>()
-                .HasMany(x => x.ParticipantSwimmers)
-                .WithMany(x => x.MeetsAttended)
-                .UsingEntity(j => j
-                    .ToTable("ParticipantSwimmersMeetsAttended")
-                    .HasData(new[]
-                        {
-                            new { ParticipantSwimmersId = 4, MeetsAttended = 1},
-                            new { ParticipantSwimmersId= 5, MeetsAttended = 1},
-                            new { ParticipantSwimmersId = 4, MeetsAttended = 2},
-                        }
-                    ));
+            //modelBuilder.Entity<Meet>()
+            //    .HasMany(x => x.ParticipantSwimmers)
+            //    .WithMany(x => x.MeetsAttended)
+            //    .UsingEntity(j => j
+            //        .ToTable("ParticipantSwimmersMeetsAttended")
+            //        .HasData(new[]
+            //            {
+            //                new { ParticipantSwimmersId = 1, MeetsAttendedId = 4},
+            //                new { ParticipantSwimmersId= 2, MeetsAttendedId = 1},
+            //                new { ParticipantSwimmersId = 3, MeetsAttendedId = 2},
+            //            }
+            //        ));
 
             modelBuilder.Entity<Swimmer>()
                 .HasMany(x => x.MeetsAttended)
@@ -111,9 +111,9 @@ namespace TPIntegradorProgIII.DBContexts
                     .ToTable("ParticipantSwimmersMeetsAttended")
                     .HasData(new[]
                         {
-                            new { MeetsAttended = 4, ParticipantSwimmers = 1},
-                            new { MeetsAttended= 5, ParticipantSwimmers = 1},
-                            new { MeetsAttended = 4, ParticipantSwimmers = 2},
+                            new { MeetsAttendedId = 4, ParticipantSwimmersId = 1},
+                            new { MeetsAttendedId= 5, ParticipantSwimmersId = 1},
+                            
                         }
                     ));
             // arreglar todas las relaciones n a n

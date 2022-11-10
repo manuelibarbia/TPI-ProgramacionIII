@@ -7,7 +7,7 @@ namespace TPIntegradorProgIII.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int MeetID { get; set; }
+        public int Id { get; set; }
 
 
         [Required]

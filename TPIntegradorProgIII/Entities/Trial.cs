@@ -11,8 +11,8 @@ namespace TPIntegradorProgIII.Entities
     public class Trial
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int TrialID { get; set; }
+        
+        public int Id { get; set; }
 
         [Required]
         public int Distance { get; set; }
@@ -20,14 +20,14 @@ namespace TPIntegradorProgIII.Entities
         [Required]
         public string Style { get; set; }
 
-        public ICollection<Swimmer> RegisteredSwimmers { get; set; } = new List<Swimmer>();
+       
 
         // Cada trial va a tener un único meet
-        [ForeignKey("MeetId")]
-        public Meet Meet { get; set; }
-        public int MeetId { get; set; }
+        //[ForeignKey("MeetId")]
+        //public Meet Meet { get; set; }
+        //public int MeetId { get; set; }
 
-
+        public ICollection<Swimmer> RegisteredSwimmers { get; set; } = new List<Swimmer>();
         //[ForeignKey("UserId")]
         //public User User { get; set; }
         //public int UserId { get; set; }
