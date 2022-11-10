@@ -103,19 +103,6 @@ namespace TPIntegradorProgIII.DBContexts
                         }
                     ));
 
-            //modelBuilder.Entity<Meet>()
-            //    .HasMany(x => x.ParticipantSwimmers)
-            //    .WithMany(x => x.MeetsAttended)
-            //    .UsingEntity(j => j
-            //        .ToTable("ParticipantSwimmersMeetsAttended")
-            //        .HasData(new[]
-            //            {
-            //                new { ParticipantSwimmersId = 1, MeetsAttendedId = 4},
-            //                new { ParticipantSwimmersId= 2, MeetsAttendedId = 1},
-            //                new { ParticipantSwimmersId = 3, MeetsAttendedId = 2},
-            //            }
-            //        ));
-
             modelBuilder.Entity<Swimmer>()
                 .HasMany(x => x.MeetsAttended)
                 .WithMany(x => x.ParticipantSwimmers)
@@ -128,7 +115,7 @@ namespace TPIntegradorProgIII.DBContexts
                             
                         }
                     ));
-            // arreglar todas las relaciones n a n
+
             base.OnModelCreating(modelBuilder);
         }
     }
