@@ -15,7 +15,7 @@ namespace TPIntegradorProgIII.Entities
         public string Password
         {
             get { return _Password; }
-            set { _Password = Security.CreateSHA512(value); }
+            set { _Password = Security.CreateSHA512(value + "StringParaSalt"); }
         }
 
 

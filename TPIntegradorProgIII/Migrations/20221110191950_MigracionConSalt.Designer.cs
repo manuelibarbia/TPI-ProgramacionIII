@@ -10,8 +10,8 @@ using TPIntegradorProgIII.DBContexts;
 namespace TPIntegradorProgIII.Migrations
 {
     [DbContext(typeof(TPContext))]
-    [Migration("20221110183611_migracion1")]
-    partial class migracion1
+    [Migration("20221110191950_MigracionConSalt")]
+    partial class MigracionConSalt
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -195,7 +195,7 @@ namespace TPIntegradorProgIII.Migrations
                             Id = 1,
                             Email = "nbologna31@gmail.com",
                             Name = "Nicolas",
-                            Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
+                            Password = "415e36e03bf7f89e299f31b30d00af049b55795f108e4e0f659e730cc6720c3d2a073b1f222044245a662be01e1f16a7c60f77839c5df6f36e9720b98ecc4968",
                             Surname = "Bologna"
                         },
                         new
@@ -203,7 +203,7 @@ namespace TPIntegradorProgIII.Migrations
                             Id = 2,
                             Email = "Jperez@gmail.com",
                             Name = "Juan",
-                            Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
+                            Password = "415e36e03bf7f89e299f31b30d00af049b55795f108e4e0f659e730cc6720c3d2a073b1f222044245a662be01e1f16a7c60f77839c5df6f36e9720b98ecc4968",
                             Surname = "Perez"
                         },
                         new
@@ -211,7 +211,7 @@ namespace TPIntegradorProgIII.Migrations
                             Id = 3,
                             Email = "pgarcia@gmail.com",
                             Name = "Pedro",
-                            Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
+                            Password = "415e36e03bf7f89e299f31b30d00af049b55795f108e4e0f659e730cc6720c3d2a073b1f222044245a662be01e1f16a7c60f77839c5df6f36e9720b98ecc4968",
                             Surname = "Garcia"
                         });
                 });

@@ -30,6 +30,7 @@ namespace TPIntegradorProgIII.Controllers
             return _swimmerService.GetMeetsBySwimmer(int.Parse(user)).ToList();
         }
 
+        [HttpGet("trials")]
         protected ActionResult<ICollection<TrialDto>> GetTrials()  // Chequear si está bien (copiado de ConsultaAlumnos)
         {
             var user = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
