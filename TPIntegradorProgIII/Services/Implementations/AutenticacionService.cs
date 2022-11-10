@@ -16,7 +16,7 @@ namespace TPIntegradorProgIII.Services.Implementations
         
         public User? ValidateUser(AuthenticationRequestBody authenticationRequest)
         {
-            if (string.IsNullOrEmpty(authenticationRequest.Email) || string.IsNullOrEmpty(authenticationRequest.Password))
+            if (string.IsNullOrEmpty(authenticationRequest.UserName) || string.IsNullOrEmpty(authenticationRequest.Password))
                 return null;
             return _userRepository.ValidateUser(authenticationRequest);
         }

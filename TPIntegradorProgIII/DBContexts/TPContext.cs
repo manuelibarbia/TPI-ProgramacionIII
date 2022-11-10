@@ -17,7 +17,6 @@ namespace TPIntegradorProgIII.DBContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasDiscriminator(u => u.UserType);
 
             Meet meet1 = new Meet()
             {
@@ -44,7 +43,8 @@ namespace TPIntegradorProgIII.DBContexts
                 Name = "Nicolas",
                 Surname = "Bologna",
                 Email = "nbologna31@gmail.com",
-                Password = "123456"
+                Password = "123456",
+                UserName = "NicoBo"
             };
 
             Swimmer swimmer2 = new Swimmer()
@@ -53,7 +53,8 @@ namespace TPIntegradorProgIII.DBContexts
                 Name = "Juan",
                 Surname = "Perez",
                 Email = "Jperez@gmail.com",
-                Password = "123456"
+                Password = "123456",
+                UserName = "JuanPe"
             };
 
             Swimmer swimmer3 = new Swimmer()
@@ -62,7 +63,8 @@ namespace TPIntegradorProgIII.DBContexts
                 Name = "Pedro",
                 Surname = "Garcia",
                 Email = "pgarcia@gmail.com",
-                Password = "123456"
+                Password = "123456",
+                UserName = "PeGarcía"
             };
 
             modelBuilder.Entity<Swimmer>().HasData(

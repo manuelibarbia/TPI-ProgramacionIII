@@ -13,11 +13,7 @@ namespace TPIntegradorProgIII.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
-        [Required]
         public int Distance { get; set; }
-
-        [Required]
         public string Style { get; set; }
 
 
