@@ -61,7 +61,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 #region injection
-builder.Services.AddSingleton<IUserRepository, UserRepository>();
+//builder.Services.AddSingleton<IUserRepository, UserRepository>();
 #endregion
 
 #region Repositories

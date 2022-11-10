@@ -1,4 +1,5 @@
 ﻿using TPIntegradorProgIII.Data.Repository.Interfaces;
+using TPIntegradorProgIII.DBContexts;
 using TPIntegradorProgIII.Entities;
 using TPIntegradorProgIII.Helpers;
 using TPIntegradorProgIII.Models;
@@ -7,34 +8,71 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
 {
     public class UserRepository : IUserRepository
     {
-        private List<User> FakeUsers = new List<User>()
+        private readonly TPContext _context;
+        public UserRepository(TPContext context)
         {
-            new User()
-            {
-                Id = 0,
-                UserName = "First",
-                Password = "password"
-            }
-        };
-
-        public User? Get(int id)
-        {
-            return FakeUsers.FirstOrDefault(u => u.Id == id);
+            _context = context;
         }
 
-        public List<User> GetAll()
+        public User? GetOne(int id)
         {
-            return FakeUsers;
+            try
+            {
+                return _context.Users.First(x => x.Id == id);
+            }
+            catch
+            {
+                throw new Exception("Usuario no encontrado");
+            }
+        }
+
+        public List<User> GetAllUsers()
+        {
+            return _context.Users.ToList();
         }
 
         public void Add(User user)
         {
-            FakeUsers.Add(user);
+            try
+            {
+                _context.Users.Add(user);
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Error al añadir usuario, chequear parámetros");
+            }
+        }
+
+        public void Delete(int id)
+        {
+            try
+            {
+                _context.Users.Remove(_context.Users.First(x => x.Id == id));
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Usuario no encontrado");
+            }
+        }
+
+        public void Edit(int id, string newEmail)
+        {
+            try
+            {
+                _context.Users.First(x => x.Id == id).Email = newEmail;
+            }
+            catch
+            {
+                throw new Exception("Usuario no encontrado, o los parámetros no son válidos");
+            }
         }
 
         public User? ValidateUser(AuthenticationRequestBody dto)
         {
-            return FakeUsers.SingleOrDefault(u => u.UserName == dto.UserName && u.Password == Security.CreateSHA512(dto.Password));
+            var HashPassword = Security.CreateSHA512(dto.Password);
+            return _context.Users.SingleOrDefault(u => u.UserName == dto.UserName && u.Password == Security.CreateSHA512(dto.Password));
         }
     }
 }
