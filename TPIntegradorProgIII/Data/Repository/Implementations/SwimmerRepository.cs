@@ -17,5 +17,10 @@ namespace TPIntegradorProgIII.Data.Repository
             _context.Swimmers.Include(a => a.MeetsAttended).ThenInclude(m => m.Trials).Where(a => a.Id == swimmerId)
             .Select(a => a.MeetsAttended).FirstOrDefault() ?? new List<Meet>();
         public Swimmer? GetSwimmerById(int userId) => _context.Swimmers.Find(userId);
+
+        public ICollection<Trial> GetSwimmerTrials(int swimmerId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

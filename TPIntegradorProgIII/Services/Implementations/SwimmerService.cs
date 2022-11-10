@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using TPIntegradorProgIII.Data.Repository.Interfaces;
+﻿using TPIntegradorProgIII.Data.Repository.Interfaces;
 using TPIntegradorProgIII.Models;
 using TPIntegradorProgIII.Services.Interfaces;
 
@@ -8,25 +7,47 @@ namespace TPIntegradorProgIII.Services.Implementations
     public class SwimmerService : ISwimmerService
     {
         private readonly ISwimmerRepository _userRepository;
-        private readonly IMapper _mapper;
 
-        public SwimmerService(ISwimmerRepository swimmerRepository, IMapper mapper)
+        public SwimmerService(ISwimmerRepository swimmerRepository)
         {
             _userRepository = swimmerRepository;
-            _mapper = mapper;
         }
         public ICollection<MeetDto> GetMeetsBySwimmer(int swimmerId)
         {
             var meets = _userRepository.GetSwimmerMeets(swimmerId);
-
-            return _mapper.Map<ICollection<MeetDto>>(meets);
+            List<MeetDto> result = new List<MeetDto>();
+            foreach (var meet in meets)
+            {
+                result.Add(new MeetDto()
+                {
+                    MeetDate = meet.MeetDate,
+                    MeetID = meet.MeetID,
+                    MeetName = meet.MeetName,
+                    MeetPlace = meet.MeetPlace,
+                    ParticipantSwimmers = meet.ParticipantSwimmers
+                });
+            }
+            return result;
+            
+            //return _mapper.Map<ICollection<MeetDto>>(meets);
         }
 
         public ICollection<TrialDto> GetTrialsBySwimmer(int swimmerId)
         {
             var trials = _userRepository.GetSwimmerTrials(swimmerId);
-
-            return _mapper.Map<ICollection<TrialDto>>(trials);
+            List<TrialDto> result = new List<TrialDto>();
+            foreach (var trial in trials)
+            {
+                result.Add(new TrialDto()
+                {
+                    TrialID = trial.TrialID,
+                    Distance = trial.Distance,
+                    RegisteredSwimmers = trial.RegisteredSwimmers,
+                    Style = trial.Style
+                });
+            }
+            return result;
+            //return _mapper.Map<ICollection<TrialDto>>(trials);
         }
     }
 }

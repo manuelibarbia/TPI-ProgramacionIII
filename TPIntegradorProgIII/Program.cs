@@ -41,7 +41,7 @@ builder.Services.AddSwaggerGen(setupAction =>
 });
 
 builder.Services.AddDbContext<TPContext>(dbContextOptions => dbContextOptions.UseSqlite(
-    builder.Configuration["ConnectionStrings:TPIntegradorDBConnectionString"]));
+    builder.Configuration["ConnectionStrings:TpIntegradorProgIIIDBConnectionString"]));
 
 builder.Services.AddAuthentication("Bearer") //"Bearer" es el tipo de auntenticación que tenemos que elegir después en PostMan para pasarle el token
     .AddJwtBearer(options => //Acá definimos la configuración de la autenticación. le decimos qué cosas queremos comprobar. La fecha de expiración se valida por defecto.
@@ -57,7 +57,6 @@ builder.Services.AddAuthentication("Bearer") //"Bearer" es el tipo de auntentica
         };
     }
 );
-
 //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); //DA ERROR
 
 #region Repositories
@@ -71,6 +70,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICustomAuthenticationService, AutenticacionService>();
 builder.Services.AddScoped<ISwimmerService, SwimmerService>();
 #endregion
+
 
 builder.Services.AddHttpContextAccessor();
 

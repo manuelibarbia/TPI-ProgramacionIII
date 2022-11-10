@@ -25,7 +25,6 @@ D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-Programacion
 D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\obj\Debug\net6.0\TPIntegradorProgIII.pdb
 D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\obj\Debug\net6.0\TPIntegradorProgIII.genruntimeconfig.cache
 D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\obj\Debug\net6.0\ref\TPIntegradorProgIII.dll
-D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\AutoMapper.dll
 D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\Microsoft.Data.Sqlite.dll
 D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
@@ -33,7 +32,6 @@ D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-Programacion
 D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Sqlite.dll
 D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
-D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
 D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
 D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
 D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
@@ -59,3 +57,6 @@ D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-Programacion
 D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\runtimes\win-arm64\native\e_sqlite3.dll
 D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\runtimes\win-x64\native\e_sqlite3.dll
 D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\runtimes\win-x86\native\e_sqlite3.dll
+D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\Humanizer.dll
+D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\TUP UTN\Programas TUP\3 TERCER CUATRIMESTRE\Programacion III\TPI-ProgramacionIII\TPIntegradorProgIII\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
