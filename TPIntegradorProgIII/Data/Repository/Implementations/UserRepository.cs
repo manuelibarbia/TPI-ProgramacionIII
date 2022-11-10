@@ -1,26 +1,40 @@
 ﻿using TPIntegradorProgIII.Data.Repository.Interfaces;
-using TPIntegradorProgIII.DBContexts;
 using TPIntegradorProgIII.Entities;
+using TPIntegradorProgIII.Helpers;
 using TPIntegradorProgIII.Models;
 
 namespace TPIntegradorProgIII.Data.Repository.Implementations
 {
-    public class UserRepository : TPRepository, IUserRepository
+    public class UserRepository : IUserRepository
     {
-        public UserRepository(TPContext context) : base(context)
+        private List<User> FakeUsers = new List<User>()
         {
+            new User()
+            {
+                Id = 0,
+                UserName = "First",
+                Password = "password"
+            }
+        };
+
+        public User? Get(int id)
+        {
+            return FakeUsers.FirstOrDefault(u => u.Id == id);
         }
 
-        public User? ValidateUser(AuthenticationRequestBody authRequestBody)
+        public List<User> GetAll()
         {
-            if (authRequestBody.UserType == "swimmer")
-                return _context.Swimmers.FirstOrDefault(p => p.Email == authRequestBody.Email && p.Password == authRequestBody.Password);
-            return null;
+            return FakeUsers;
         }
 
-        public User? GetUserById(int userId)
+        public void Add(User user)
         {
-            return _context.Users.Find(userId);
+            FakeUsers.Add(user);
+        }
+
+        public User? ValidateUser(AuthenticationRequestBody dto)
+        {
+            return FakeUsers.SingleOrDefault(u => u.UserName == dto.UserName && u.Password == Security.CreateSHA512(dto.Password));
         }
     }
 }

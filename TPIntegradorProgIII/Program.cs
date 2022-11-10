@@ -3,7 +3,6 @@ using TPIntegradorProgIII.Services.Implementations;
 using TPIntegradorProgIII.Data.Repository.Interfaces;
 using TPIntegradorProgIII.DBContexts;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using System.Text.Json.Serialization;
