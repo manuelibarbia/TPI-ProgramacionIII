@@ -4,7 +4,7 @@
 
 namespace TPIntegradorProgIII.Migrations
 {
-    public partial class migracion12 : Migration
+    public partial class migracionprueba : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,7 +48,7 @@ namespace TPIntegradorProgIII.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Distance = table.Column<int>(type: "INTEGER", nullable: false),
                     Style = table.Column<string>(type: "TEXT", nullable: false),
-                    MeetId = table.Column<int>(type: "INTEGER", nullable: true)
+                    MeetId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -57,11 +57,12 @@ namespace TPIntegradorProgIII.Migrations
                         name: "FK_Trials_Meets_MeetId",
                         column: x => x.MeetId,
                         principalTable: "Meets",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ParticipantSwimmersMeetsAttended",
+                name: "ParticipantSwimmersInMeets",
                 columns: table => new
                 {
                     MeetsAttendedId = table.Column<int>(type: "INTEGER", nullable: false),
@@ -69,15 +70,15 @@ namespace TPIntegradorProgIII.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ParticipantSwimmersMeetsAttended", x => new { x.MeetsAttendedId, x.ParticipantSwimmersId });
+                    table.PrimaryKey("PK_ParticipantSwimmersInMeets", x => new { x.MeetsAttendedId, x.ParticipantSwimmersId });
                     table.ForeignKey(
-                        name: "FK_ParticipantSwimmersMeetsAttended_Meets_MeetsAttendedId",
+                        name: "FK_ParticipantSwimmersInMeets_Meets_MeetsAttendedId",
                         column: x => x.MeetsAttendedId,
                         principalTable: "Meets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ParticipantSwimmersMeetsAttended_Users_ParticipantSwimmersId",
+                        name: "FK_ParticipantSwimmersInMeets_Users_ParticipantSwimmersId",
                         column: x => x.ParticipantSwimmersId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -85,7 +86,7 @@ namespace TPIntegradorProgIII.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RegisteredSwimmersTrialsAttended",
+                name: "RegisteredSwimmersInTrials",
                 columns: table => new
                 {
                     RegisteredSwimmersId = table.Column<int>(type: "INTEGER", nullable: false),
@@ -93,15 +94,15 @@ namespace TPIntegradorProgIII.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RegisteredSwimmersTrialsAttended", x => new { x.RegisteredSwimmersId, x.TrialsAttendedId });
+                    table.PrimaryKey("PK_RegisteredSwimmersInTrials", x => new { x.RegisteredSwimmersId, x.TrialsAttendedId });
                     table.ForeignKey(
-                        name: "FK_RegisteredSwimmersTrialsAttended_Trials_TrialsAttendedId",
+                        name: "FK_RegisteredSwimmersInTrials_Trials_TrialsAttendedId",
                         column: x => x.TrialsAttendedId,
                         principalTable: "Trials",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RegisteredSwimmersTrialsAttended_Users_RegisteredSwimmersId",
+                        name: "FK_RegisteredSwimmersInTrials_Users_RegisteredSwimmersId",
                         column: x => x.RegisteredSwimmersId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -111,22 +112,12 @@ namespace TPIntegradorProgIII.Migrations
             migrationBuilder.InsertData(
                 table: "Meets",
                 columns: new[] { "Id", "MeetDate", "MeetName", "MeetPlace" },
-                values: new object[] { 4, "15/12/23", "Encuentro 2", "Rosario" });
+                values: new object[] { 1, "20/12/2022", "MeetPiola", "Piolalandia" });
 
             migrationBuilder.InsertData(
                 table: "Meets",
                 columns: new[] { "Id", "MeetDate", "MeetName", "MeetPlace" },
-                values: new object[] { 5, "10/11/23", "Encuentro 1", "Rosario" });
-
-            migrationBuilder.InsertData(
-                table: "Trials",
-                columns: new[] { "Id", "Distance", "MeetId", "Style" },
-                values: new object[] { 1, 100, null, "Croll" });
-
-            migrationBuilder.InsertData(
-                table: "Trials",
-                columns: new[] { "Id", "Distance", "MeetId", "Style" },
-                values: new object[] { 2, 150, null, "Croll" });
+                values: new object[] { 2, "25/12/2022", "MeetPiola2", "Piolalandia" });
 
             migrationBuilder.InsertData(
                 table: "Users",
@@ -144,33 +135,43 @@ namespace TPIntegradorProgIII.Migrations
                 values: new object[] { 3, "pgarcia@gmail.com", "Pedro", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Garcia", "Swimmer" });
 
             migrationBuilder.InsertData(
-                table: "ParticipantSwimmersMeetsAttended",
+                table: "ParticipantSwimmersInMeets",
                 columns: new[] { "MeetsAttendedId", "ParticipantSwimmersId" },
-                values: new object[] { 4, 1 });
+                values: new object[] { 1, 1 });
 
             migrationBuilder.InsertData(
-                table: "ParticipantSwimmersMeetsAttended",
+                table: "ParticipantSwimmersInMeets",
                 columns: new[] { "MeetsAttendedId", "ParticipantSwimmersId" },
-                values: new object[] { 5, 1 });
+                values: new object[] { 2, 1 });
 
             migrationBuilder.InsertData(
-                table: "RegisteredSwimmersTrialsAttended",
+                table: "Trials",
+                columns: new[] { "Id", "Distance", "MeetId", "Style" },
+                values: new object[] { 1, 100, 1, "Croll" });
+
+            migrationBuilder.InsertData(
+                table: "Trials",
+                columns: new[] { "Id", "Distance", "MeetId", "Style" },
+                values: new object[] { 2, 150, 2, "Croll" });
+
+            migrationBuilder.InsertData(
+                table: "RegisteredSwimmersInTrials",
                 columns: new[] { "RegisteredSwimmersId", "TrialsAttendedId" },
                 values: new object[] { 1, 1 });
 
             migrationBuilder.InsertData(
-                table: "RegisteredSwimmersTrialsAttended",
+                table: "RegisteredSwimmersInTrials",
                 columns: new[] { "RegisteredSwimmersId", "TrialsAttendedId" },
-                values: new object[] { 2, 2 });
+                values: new object[] { 1, 2 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ParticipantSwimmersMeetsAttended_ParticipantSwimmersId",
-                table: "ParticipantSwimmersMeetsAttended",
+                name: "IX_ParticipantSwimmersInMeets_ParticipantSwimmersId",
+                table: "ParticipantSwimmersInMeets",
                 column: "ParticipantSwimmersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RegisteredSwimmersTrialsAttended_TrialsAttendedId",
-                table: "RegisteredSwimmersTrialsAttended",
+                name: "IX_RegisteredSwimmersInTrials_TrialsAttendedId",
+                table: "RegisteredSwimmersInTrials",
                 column: "TrialsAttendedId");
 
             migrationBuilder.CreateIndex(
@@ -182,10 +183,10 @@ namespace TPIntegradorProgIII.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ParticipantSwimmersMeetsAttended");
+                name: "ParticipantSwimmersInMeets");
 
             migrationBuilder.DropTable(
-                name: "RegisteredSwimmersTrialsAttended");
+                name: "RegisteredSwimmersInTrials");
 
             migrationBuilder.DropTable(
                 name: "Trials");

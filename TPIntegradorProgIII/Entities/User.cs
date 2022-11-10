@@ -19,10 +19,11 @@ namespace TPIntegradorProgIII.Entities
         }
 
 
-        [Required] // ¿Required se pone una única vez o en cada variable requerida?
+        [Required]
         public string Name { get; set; }
         public string Surname { get; set; }
+        [Required]
         public string Email { get; set; }
-        public string UserType { get; set; } // ¿Para qué sirve? ¿Lo necesitamos?
+        public string UserType { get; set; }
     }
 }
