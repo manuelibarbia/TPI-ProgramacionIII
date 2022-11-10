@@ -21,9 +21,5 @@ namespace TPIntegradorProgIII.Entities
 
         public ICollection<Swimmer> ParticipantSwimmers { get; set; } = new List<Swimmer>();
         public ICollection<Trial> Trials { get; set; } = new List<Trial>();
-
-        //[ForeignKey("UserId")]
-        //public User User { get; set; }
-        //public int UserId { get; set; }
     }
 }
