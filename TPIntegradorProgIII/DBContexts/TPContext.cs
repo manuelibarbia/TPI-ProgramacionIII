@@ -44,7 +44,8 @@ namespace TPIntegradorProgIII.DBContexts
                 Surname = "Bologna",
                 Email = "nbologna31@gmail.com",
                 Password = "123456",
-                UserName = "NicoBo"
+                UserName = "NicoBo",
+                DNI = "44539210"
             };
 
             Swimmer swimmer2 = new Swimmer()
@@ -54,7 +55,8 @@ namespace TPIntegradorProgIII.DBContexts
                 Surname = "Perez",
                 Email = "Jperez@gmail.com",
                 Password = "123456",
-                UserName = "JuanPe"
+                UserName = "JuanPe",
+                DNI = "33444555"
             };
 
             Swimmer swimmer3 = new Swimmer()
@@ -64,7 +66,8 @@ namespace TPIntegradorProgIII.DBContexts
                 Surname = "Garcia",
                 Email = "pgarcia@gmail.com",
                 Password = "123456",
-                UserName = "PeGarcía"
+                UserName = "PeGarcía",
+                DNI = "55666777"
             };
 
             modelBuilder.Entity<Swimmer>().HasData(

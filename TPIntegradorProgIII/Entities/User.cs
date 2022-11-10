@@ -1,9 +1,13 @@
-﻿using TPIntegradorProgIII.Helpers;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using TPIntegradorProgIII.Helpers;
 
 namespace TPIntegradorProgIII.Entities
 {
     public class User
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string UserName { get; set; }
 
@@ -15,8 +19,25 @@ namespace TPIntegradorProgIII.Entities
             set { _Password = Security.CreateSHA512(value); }
         }
 
+        public string DNI { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+
+        public User(int id, string userName, string password, string dNI, string email, string name, string surname)
+        {
+            Id = id;
+            UserName = userName;
+            Password = password;
+            DNI = dNI;
+            Email = email;
+            Name = name;
+            Surname = surname;
+        }
+
+        public User()
+        {
+
+        }
     }
 }

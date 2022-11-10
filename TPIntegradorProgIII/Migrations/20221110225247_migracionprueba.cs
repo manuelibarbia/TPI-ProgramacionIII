@@ -31,6 +31,7 @@ namespace TPIntegradorProgIII.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     UserName = table.Column<string>(type: "TEXT", nullable: false),
                     Password = table.Column<string>(type: "TEXT", nullable: false),
+                    DNI = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Surname = table.Column<string>(type: "TEXT", nullable: false),
@@ -122,18 +123,18 @@ namespace TPIntegradorProgIII.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "Discriminator", "Email", "Name", "Password", "Surname", "UserName" },
-                values: new object[] { 1, "Swimmer", "nbologna31@gmail.com", "Nicolas", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Bologna", "NicoBo" });
+                columns: new[] { "Id", "DNI", "Discriminator", "Email", "Name", "Password", "Surname", "UserName" },
+                values: new object[] { 1, "44539210", "Swimmer", "nbologna31@gmail.com", "Nicolas", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Bologna", "NicoBo" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "Discriminator", "Email", "Name", "Password", "Surname", "UserName" },
-                values: new object[] { 2, "Swimmer", "Jperez@gmail.com", "Juan", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Perez", "JuanPe" });
+                columns: new[] { "Id", "DNI", "Discriminator", "Email", "Name", "Password", "Surname", "UserName" },
+                values: new object[] { 2, "33444555", "Swimmer", "Jperez@gmail.com", "Juan", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Perez", "JuanPe" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "Discriminator", "Email", "Name", "Password", "Surname", "UserName" },
-                values: new object[] { 3, "Swimmer", "pgarcia@gmail.com", "Pedro", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Garcia", "PeGarcía" });
+                columns: new[] { "Id", "DNI", "Discriminator", "Email", "Name", "Password", "Surname", "UserName" },
+                values: new object[] { 3, "55666777", "Swimmer", "pgarcia@gmail.com", "Pedro", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Garcia", "PeGarcía" });
 
             migrationBuilder.InsertData(
                 table: "ParticipantSwimmersInMeets",
