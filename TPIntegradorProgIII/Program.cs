@@ -85,7 +85,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-builder.Services.AddSingleton<IUserRepository, UserRepository>(); // ¿Lo dejamos? ¿Para qué es?
+//builder.Services.AddSingleton<IUserRepository, UserRepository>(); // ¿Lo dejamos? ¿Para qué es?
 
 app.UseHttpsRedirection();
 

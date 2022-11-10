@@ -14,13 +14,13 @@ namespace TPIntegradorProgIII.Controllers
     public class SwimmerController : ControllerBase
     {
         private readonly ISwimmerService _swimmerService;
-        public SwimmerController(ISwimmerService swimmerService)
+        protected SwimmerController(ISwimmerService swimmerService)
         {
             this._swimmerService = swimmerService;
         }
 
         [HttpGet("meets")]
-        public ActionResult<ICollection<MeetDto>> GetMeets()  //Chequear si está bien (copiado de ConsultaAlumnos)
+        protected ActionResult<ICollection<MeetDto>> GetMeets()  //Chequear si está bien (copiado de ConsultaAlumnos)
         {
             var user = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
@@ -30,7 +30,7 @@ namespace TPIntegradorProgIII.Controllers
             return _swimmerService.GetMeetsBySwimmer(int.Parse(user)).ToList();
         }
 
-        public ActionResult<ICollection<TrialDto>> GetTrials()  // Chequear si está bien (copiado de ConsultaAlumnos)
+        protected ActionResult<ICollection<TrialDto>> GetTrials()  // Chequear si está bien (copiado de ConsultaAlumnos)
         {
             var user = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
             var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;

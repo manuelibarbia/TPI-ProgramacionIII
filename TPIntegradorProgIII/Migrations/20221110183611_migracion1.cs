@@ -4,7 +4,7 @@
 
 namespace TPIntegradorProgIII.Migrations
 {
-    public partial class migracionprueba : Migration
+    public partial class migracion1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
