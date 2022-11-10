@@ -5,16 +5,12 @@ using TPIntegradorProgIII.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Text;
-using System.Text.Json.Serialization;
 using TPIntegradorProgIII.Data.Repository.Implementations;
 using TPIntegradorProgIII.Services.Interfaces;
 using TPIntegradorProgIII.Data.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(setupAction =>
@@ -56,7 +52,17 @@ builder.Services.AddAuthentication("Bearer") //"Bearer" es el tipo de auntentica
         };
     }
 );
-//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); //DA ERROR
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+#region injection
+builder.Services.AddSingleton<IUserRepository, UserRepository>();
+#endregion
 
 #region Repositories
 builder.Services.AddScoped<IMeetRepository, MeetRepository>();
@@ -71,7 +77,7 @@ builder.Services.AddScoped<ISwimmerService, SwimmerService>();
 #endregion
 
 
-builder.Services.AddHttpContextAccessor();
+//builder.Services.AddHttpContextAccessor();
 
 
 
