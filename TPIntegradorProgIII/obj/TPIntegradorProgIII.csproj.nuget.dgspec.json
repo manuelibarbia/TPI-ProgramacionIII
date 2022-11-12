@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TUP UTN\\Programas TUP\\3 TERCER CUATRIMESTRE\\Programacion III\\TPI-ProgramacionIII\\TPIntegradorProgIII\\TPIntegradorProgIII.csproj": {}
+    "C:\\Users\\Luciano\\Desktop\\PROG-III-TPI\\CLONE\\TPI-ProgramacionIII\\TPIntegradorProgIII\\TPIntegradorProgIII.csproj": {}
   },
   "projects": {
-    "D:\\TUP UTN\\Programas TUP\\3 TERCER CUATRIMESTRE\\Programacion III\\TPI-ProgramacionIII\\TPIntegradorProgIII\\TPIntegradorProgIII.csproj": {
+    "C:\\Users\\Luciano\\Desktop\\PROG-III-TPI\\CLONE\\TPI-ProgramacionIII\\TPIntegradorProgIII\\TPIntegradorProgIII.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TUP UTN\\Programas TUP\\3 TERCER CUATRIMESTRE\\Programacion III\\TPI-ProgramacionIII\\TPIntegradorProgIII\\TPIntegradorProgIII.csproj",
+        "projectUniqueName": "C:\\Users\\Luciano\\Desktop\\PROG-III-TPI\\CLONE\\TPI-ProgramacionIII\\TPIntegradorProgIII\\TPIntegradorProgIII.csproj",
         "projectName": "TPIntegradorProgIII",
-        "projectPath": "D:\\TUP UTN\\Programas TUP\\3 TERCER CUATRIMESTRE\\Programacion III\\TPI-ProgramacionIII\\TPIntegradorProgIII\\TPIntegradorProgIII.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "D:\\TUP UTN\\Programas TUP\\3 TERCER CUATRIMESTRE\\Programacion III\\TPI-ProgramacionIII\\TPIntegradorProgIII\\obj\\",
+        "projectPath": "C:\\Users\\Luciano\\Desktop\\PROG-III-TPI\\CLONE\\TPI-ProgramacionIII\\TPIntegradorProgIII\\TPIntegradorProgIII.csproj",
+        "packagesPath": "C:\\Users\\Luciano\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Luciano\\Desktop\\PROG-III-TPI\\CLONE\\TPI-ProgramacionIII\\TPIntegradorProgIII\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Luciano\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -73,7 +73,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -85,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
