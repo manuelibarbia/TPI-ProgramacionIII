@@ -15,25 +15,47 @@ namespace TPIntegradorProgIII.Data.Repository
             _context = context;
         }
 
-        public List<Trial> GetAllTrial() 
+        public List<Trial> GetAllTrials() 
         {
             return _context.Trials.ToList();
         }
 
-        void ITrialRepository.AddTrial(Trial trial)
+        public Trial? GetOneTrial(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _context.Trials.First(x => x.Id == id);
+            }
+            catch
+            {
+                throw new Exception("Trial no encontrado");
+            }
         }
 
-        void ITrialRepository.DeleteTrial(int id)
+        public void AddTrial(Trial trial)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Trials.Add(trial);
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Error al crear el trial");
+            }
         }
 
-        
-        Trial? ITrialRepository.GetOneTrial(int id)
+        public void DeleteTrial(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Trials.Remove(_context.Trials.First(x => x.Id == id));
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Trial no encontrado, revisar si el Id es correcto.");
+            }
         }
     }
 }

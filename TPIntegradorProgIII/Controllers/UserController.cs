@@ -49,9 +49,9 @@ namespace TPIntegradorProgIII.Controllers
 
         [HttpGet]
         [Route("getOne/{id}")]
-        public IActionResult GetOne(int id)
+        public IActionResult GetSingleUser(int id)
         {
-            User? user =_userRepository.GetOne(id);
+            User? user = _userRepository.GetOne(id);
             UserResponse response = new()
             {
                 Name = user.Name,
@@ -59,8 +59,6 @@ namespace TPIntegradorProgIII.Controllers
             };
             return Ok(response);
         }
-
-
 
         [HttpPost]
         [Route("addUser")]

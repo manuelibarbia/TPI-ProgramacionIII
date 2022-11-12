@@ -40,7 +40,7 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             }
             catch
             {
-                throw new Exception("Error al añadir usuario, chequear parámetros");
+                throw new Exception("Error al añadir usuario");
             }
         }
 
@@ -65,7 +65,7 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             }
             catch
             {
-                throw new Exception("Usuario no encontrado, o los parámetros no son válidos");
+                throw new Exception("Usuario no encontrado, revisar si el Id es correcto");
             }
         }
 
