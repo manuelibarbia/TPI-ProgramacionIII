@@ -17,26 +17,47 @@ namespace TPIntegradorProgIII.DBContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            //Declaración de meets por defecto
             Meet meet1 = new Meet()
             {
                 Id = 1,
                 MeetDate = "20/12/2022",
-                MeetName = "MeetPiola",
-                MeetPlace = "Piolalandia",
+                MeetName = "Primer Meet",
+                MeetPlace = "Rosario",
             };
 
             Meet meet2 = new Meet()
             {
                 Id = 2,
                 MeetDate = "25/12/2022",
-                MeetName = "MeetPiola2",
-                MeetPlace = "Piolalandia",
+                MeetName = "Segundo Meet",
+                MeetPlace = "Buenos Aires",
             };
 
             modelBuilder.Entity<Meet>().HasData(
                 meet1, meet2);
 
+            //Declaración de trials por defecto
+            Trial trial1 = new Trial()
+            {
+                Id = 1,
+                Distance = 100,
+                Style = "Croll",
+                MeetId = meet1.Id
+            };
+
+            Trial trial2 = new Trial()
+            {
+                Id = 2,
+                Distance = 150,
+                Style = "Espalda",
+                MeetId = meet2.Id
+            };
+
+            modelBuilder.Entity<Trial>().HasData(
+                trial1, trial2);
+
+            //Declaración de swimmers por defecto
             Swimmer swimmer1 = new Swimmer()
             {
                 Id = 1,
@@ -45,7 +66,7 @@ namespace TPIntegradorProgIII.DBContexts
                 Email = "nbologna31@gmail.com",
                 Password = "123456",
                 UserName = "NicoBo",
-                DNI = "44539210"
+                DNI = "44555666"
             };
 
             Swimmer swimmer2 = new Swimmer()
@@ -72,25 +93,6 @@ namespace TPIntegradorProgIII.DBContexts
 
             modelBuilder.Entity<Swimmer>().HasData(
                 swimmer1, swimmer2, swimmer3);
-
-            Trial trial1 = new Trial()
-            {
-                Id = 1,
-                Distance = 100,
-                Style = "Croll",
-                MeetId = meet1.Id
-            };
-
-            Trial trial2 = new Trial()
-            {
-                Id = 2,
-                Distance = 150,
-                Style = "Croll",
-                MeetId = meet2.Id
-            };
-
-            modelBuilder.Entity<Trial>().HasData(
-                trial1, trial2);
 
             modelBuilder.Entity<Meet>()
                 .HasMany<Trial>(u => u.Trials)

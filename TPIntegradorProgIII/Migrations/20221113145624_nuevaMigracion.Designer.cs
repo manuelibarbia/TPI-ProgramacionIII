@@ -10,8 +10,8 @@ using TPIntegradorProgIII.DBContexts;
 namespace TPIntegradorProgIII.Migrations
 {
     [DbContext(typeof(TPContext))]
-    [Migration("20221112225232_prueba1")]
-    partial class prueba1
+    [Migration("20221113145624_nuevaMigracion")]
+    partial class nuevaMigracion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,15 +72,15 @@ namespace TPIntegradorProgIII.Migrations
                         {
                             Id = 1,
                             MeetDate = "20/12/2022",
-                            MeetName = "MeetPiola",
-                            MeetPlace = "Piolalandia"
+                            MeetName = "Primer Meet",
+                            MeetPlace = "Rosario"
                         },
                         new
                         {
                             Id = 2,
                             MeetDate = "25/12/2022",
-                            MeetName = "MeetPiola2",
-                            MeetPlace = "Piolalandia"
+                            MeetName = "Segundo Meet",
+                            MeetPlace = "Buenos Aires"
                         });
                 });
 
@@ -119,7 +119,7 @@ namespace TPIntegradorProgIII.Migrations
                             Id = 2,
                             Distance = 150,
                             MeetId = 2,
-                            Style = "Croll"
+                            Style = "Espalda"
                         });
                 });
 
@@ -174,7 +174,7 @@ namespace TPIntegradorProgIII.Migrations
                         new
                         {
                             Id = 1,
-                            DNI = "44539210",
+                            DNI = "44555666",
                             Email = "nbologna31@gmail.com",
                             Name = "Nicolas",
                             Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
