@@ -1,16 +1,12 @@
 ﻿
 using TPIntegradorProgIII.Entities;
-
 using TPIntegradorProgIII.DBContexts;
 
 
 namespace TPIntegradorProgIII.Data.Repository
 {
-   
-
-
-    public class MeetRepository : IMeetRepository
-    {
+   public class MeetRepository : IMeetRepository
+   {
         private readonly TPContext _context;
         public MeetRepository(TPContext context)
         {
@@ -34,11 +30,11 @@ namespace TPIntegradorProgIII.Data.Repository
             return _context.Meets.ToList();
         }
 
-        public void AddMeet(Meet meet)
+        public void AddMeet(Meet newMeet)
         {
             try
             {
-                _context.Meets.Add(meet);
+                _context.Meets.Add(newMeet);
                 _context.SaveChanges();
             }
             catch
@@ -47,7 +43,7 @@ namespace TPIntegradorProgIII.Data.Repository
             }
         }
 
-        public void DeleteMeet(int id)
+        public void RemoveMeet(int id)
         {
             try
             {
@@ -60,7 +56,7 @@ namespace TPIntegradorProgIII.Data.Repository
             }
         }
 
-        public void ModifyMeetDate(int id, string newMeetDate)
+        public void EditMeetDate(int id, string newMeetDate)
         {
             try
             {
@@ -72,6 +68,6 @@ namespace TPIntegradorProgIII.Data.Repository
                 throw new Exception("Meet no encontrado o parámetros no válidos");
             }
         }
-    }
+   }
 
 }
