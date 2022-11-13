@@ -31,10 +31,11 @@ namespace TPIntegradorProgIII.Controllers
                 {
                     MeetResponse response = new()
                     {
+                        Id = meet.Id,
                         MeetName = meet.MeetName,
                         MeetDate = meet.MeetDate,
                         MeetPlace = meet.MeetPlace,
-                        Id = meet.Id,
+                        Trials = meet.Trials,
                     };
                     meetsList.Add(response);
                 }

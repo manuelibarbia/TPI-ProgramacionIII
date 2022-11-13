@@ -10,7 +10,5 @@ namespace TPIntegradorProgIII.Models
         public string MeetName { get; set; }
         public string MeetDate { get; set; }
         public string MeetPlace { get; set; }
-
-      
     }
 }
