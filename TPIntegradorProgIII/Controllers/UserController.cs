@@ -38,7 +38,6 @@ namespace TPIntegradorProgIII.Controllers
                             Surname = user.Surname,
                             UserName = user.UserName,
                             DNI = user.DNI,
-                            Password = user.Password,
                             Email = user.Email,
                         };
                     usersList.Add(response);
@@ -65,7 +64,6 @@ namespace TPIntegradorProgIII.Controllers
                     Surname = user.Surname,
                     UserName = user.UserName,
                     DNI = user.DNI,
-                    Password = user.Password,
                     Email = user.Email,
                 };
                 return Ok(response);
@@ -101,7 +99,6 @@ namespace TPIntegradorProgIII.Controllers
                     Surname = user.Surname,
                     UserName = user.UserName,
                     DNI = user.DNI,
-                    Password = user.Password,
                     Email = user.Email,
                 };
                 _userRepository.AddUser(user);

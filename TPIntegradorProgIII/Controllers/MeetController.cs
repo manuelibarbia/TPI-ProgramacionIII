@@ -34,8 +34,7 @@ namespace TPIntegradorProgIII.Controllers
                         Id = meet.Id,
                         MeetName = meet.MeetName,
                         MeetDate = meet.MeetDate,
-                        MeetPlace = meet.MeetPlace,
-                        Trials = meet.Trials,
+                        MeetPlace = meet.MeetPlace
                     };
                     meetsList.Add(response);
                 }

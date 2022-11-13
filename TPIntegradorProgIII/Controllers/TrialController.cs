@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TPIntegradorProgIII.Data.Repository;
 using TPIntegradorProgIII.Data.Repository.Interfaces;
 using TPIntegradorProgIII.Entities;
 using TPIntegradorProgIII.Models;
@@ -33,7 +34,8 @@ namespace TPIntegradorProgIII.Controllers
                         Id = trial.Id,
                         Distance = trial.Distance,
                         Style = trial.Style,
-                        MeetId = trial.MeetId,
+                        TrialMeet = _trialRepository.GetSingleMeet(trial.MeetId)[0],
+                        RegisteredSwimmers = trial.RegisteredSwimmers,
                     };
                     trialsList.Add(response);
                 }

@@ -11,5 +11,6 @@ namespace TPIntegradorProgIII.Data.Repository.Interfaces
         public void EditTrialDistance(int id, int newDistance);
         public void EditTrialStyle(int id, string newStyle);
         public List<Meet> GetExistingMeets();
+        public List<Meet> GetSingleMeet(int id);
     }
 }
