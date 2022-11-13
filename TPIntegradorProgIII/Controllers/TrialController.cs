@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TPIntegradorProgIII.Data.Repository.Interfaces;
-using TPIntegradorProgIII.DBContexts;
 using TPIntegradorProgIII.Entities;
 using TPIntegradorProgIII.Models;
 
@@ -25,14 +24,14 @@ namespace TPIntegradorProgIII.Controllers
         [Route("getAllTrials")]
         public IActionResult GetAllTrials()
         {
-                List<Trial> trials = _trialRepository.GetAllTrials();
-                List<TrialDto> trialsList = new();
+                List<Trial> trials = _trialRepository.GetTrials();
+                List<TrialResponse> trialsList = new();
                 foreach (var trial in trials)
                 {
-                    TrialDto response = new()
+                    TrialResponse response = new()
                     {
-                        Distance = trial.Distance,
                         Id = trial.Id,
+                        Distance = trial.Distance,
                         Style = trial.Style,
                     };
                     trialsList.Add(response);
@@ -42,38 +41,40 @@ namespace TPIntegradorProgIII.Controllers
 
         [HttpGet]
         [Route("getTrialById/{id}")]
-        public IActionResult GetSingleTrial(int id)
+        public IActionResult GetTrialByiD(int id)
         {
-            Trial? trial = _trialRepository.GetOneTrial(id);
-            TrialDto response = new()
+            Trial? trial = _trialRepository.GetSingleTrial(id);
+            TrialResponse response = new()
             {
+                Id = trial.Id,
                 Distance = trial.Distance,
+                Style = trial.Style
             };
             return Ok(response);
         }
 
         [HttpPost]
         [Route("createTrial")]
-        public IActionResult CreateTrial (TrialDto dto)
+        public IActionResult CreateTrial (AddTrialRequest request)
         {
             try
             {
                 //List<Meet> meets = GetALLTrials();
-                //validateMeetId(meets, dto.MeetId); //validamos que el meet al cual se quiere asignar el trial exista
+                //ValidateMeetId(meets, request.MeetId); //validamos que el meet al cual se quiere asignar el trial exista
                 Trial newTrial = new()
                 {
-                    Distance = dto.Distance,
-                    Style = dto.Style,
-                    MeetId = dto.MeetId,
+                    Distance = request.Distance,
+                    Style = request.Style,
+                    MeetId = request.MeetId
                 };
-                TrialDto response = new()
+                TrialResponse response = new()
                 {
                     Distance = newTrial.Distance,
                     Style = newTrial.Style,
-                    MeetId = newTrial.MeetId,
+                    MeetId = newTrial.MeetId
                 };
                 _trialRepository.AddTrial(newTrial);
-                return Created("Trial creado correctamente.", response);
+                return Created("Trial creado", response);
             }
             catch(Exception ex)
             {
@@ -83,12 +84,12 @@ namespace TPIntegradorProgIII.Controllers
 
         [HttpDelete]
         [Route("deleteTrial/{id}")]
-        public IActionResult DeleteTrial (int id)
+        public IActionResult DeleteTrial(int id)
         {
             try
             {
-                _trialRepository.DeleteTrial(id);
-                return Ok("Trial eliminado");
+                _trialRepository.RemoveTrial(id);
+                return Ok("Trial borrado");
             }
             catch(Exception ex)
             {
@@ -97,7 +98,7 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [NonAction]
-        public void validateMeetId(List<Meet> meets, int Id)
+        public void ValidateMeetId(List<Meet> meets, int Id)
         {
             var meetExists = meets.First(m => m.Id == Id);
             if (meetExists == null)
@@ -105,7 +106,5 @@ namespace TPIntegradorProgIII.Controllers
                 throw new Exception("Meet no encontrado, revisar Id.");
             }
         }
-        
-        
     }
 }

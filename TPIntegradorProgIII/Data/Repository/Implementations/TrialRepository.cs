@@ -15,12 +15,12 @@ namespace TPIntegradorProgIII.Data.Repository
             _context = context;
         }
 
-        public List<Trial> GetAllTrials() 
+        public List<Trial> GetTrials() 
         {
             return _context.Trials.ToList();
         }
 
-        public Trial? GetOneTrial(int id)
+        public Trial? GetSingleTrial(int id)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace TPIntegradorProgIII.Data.Repository
             }
         }
 
-        public void DeleteTrial(int id)
+        public void RemoveTrial(int id)
         {
             try
             {

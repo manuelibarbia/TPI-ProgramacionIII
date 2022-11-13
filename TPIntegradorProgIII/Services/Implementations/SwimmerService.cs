@@ -13,13 +13,13 @@ namespace TPIntegradorProgIII.Services.Implementations
             _userRepository = swimmerRepository;
         }
 
-        public ICollection<TrialDto> GetTrialsBySwimmer(int swimmerId)
+        public ICollection<TrialResponse> GetTrialsBySwimmer(int swimmerId)
         {
             var trials = _userRepository.GetSwimmerTrials(swimmerId);
-            List<TrialDto> result = new List<TrialDto>();
+            List<TrialResponse> result = new List<TrialResponse>();
             foreach (var trial in trials)
             {
-                result.Add(new TrialDto()
+                result.Add(new TrialResponse()
                 {
                     Id = trial.Id,
                     Distance = trial.Distance,
