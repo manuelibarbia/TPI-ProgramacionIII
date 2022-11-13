@@ -57,5 +57,36 @@ namespace TPIntegradorProgIII.Data.Repository
                 throw new Exception("Trial no encontrado, revisar si el Id es correcto.");
             }
         }
+
+        public void EditTrialDistance(int id, int newDistance)
+        {
+            try
+            {
+                _context.Trials.First(t => t.Id == id).Distance = newDistance;
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Trial no encontrado, revisar si el Id es correcto");
+            }
+        }
+
+        public void EditTrialStyle(int id, string newStyle)
+        {
+            try
+            {
+                _context.Trials.First(t => t.Id == id).Style = newStyle;
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Trial no encontrado, revisar si el Id es correcto");
+            }
+        }
+
+        public List<Meet> GetExistingMeets()
+        {
+            return _context.Meets.ToList();
+        }
     }
 }

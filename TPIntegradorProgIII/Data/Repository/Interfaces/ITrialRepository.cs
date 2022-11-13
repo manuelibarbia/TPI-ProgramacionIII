@@ -8,5 +8,8 @@ namespace TPIntegradorProgIII.Data.Repository.Interfaces
         public List<Trial> GetTrials();
         public void AddTrial(Trial trial);
         public void RemoveTrial(int id);
+        public void EditTrialDistance(int id, int newDistance);
+        public void EditTrialStyle(int id, string newStyle);
+        public List<Meet> GetExistingMeets();
     }
 }
