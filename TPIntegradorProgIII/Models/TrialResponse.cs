@@ -8,6 +8,7 @@ namespace TPIntegradorProgIII.Models
         public int Distance { get; set; }
         public string Style { get; set; }
         public int MeetId { get; set; }
+        public string TrialMeet { get; set; }
 
         public ICollection<Swimmer> RegisteredSwimmers { get; set; } = new List<Swimmer>();
     }

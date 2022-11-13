@@ -88,5 +88,10 @@ namespace TPIntegradorProgIII.Data.Repository
         {
             return _context.Meets.ToList();
         }
+
+        public string GetSingleMeet(int id)
+        {
+            return _context.Meets.Name.Where(x => x.Id == id);
+        }
     }
 }
