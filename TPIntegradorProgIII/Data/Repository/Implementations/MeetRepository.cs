@@ -17,7 +17,7 @@ namespace TPIntegradorProgIII.Data.Repository
             _context = context;
         }
 
-        public Meet? GetOneMeet(int id)
+        public Meet? GetSingleMeet(int id)
         {
             try
             {
@@ -60,9 +60,18 @@ namespace TPIntegradorProgIII.Data.Repository
             }
         }
 
-
-        
-
+        public void ModifyMeetDate(int id, string newMeetDate)
+        {
+            try
+            {
+                _context.Meets.First(m => m.Id == id).MeetDate = newMeetDate;
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Meet no encontrado o parámetros no válidos");
+            }
+        }
     }
 
 }
