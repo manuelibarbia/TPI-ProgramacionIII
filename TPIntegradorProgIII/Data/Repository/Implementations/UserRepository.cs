@@ -14,7 +14,7 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             _context = context;
         }
 
-        public User? GetOne(int id)
+        public User? GetSingleUser(int id)
         {
             try
             {
@@ -26,12 +26,12 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             }
         }
 
-        public List<User> GetAllUsers()
+        public List<User> GetUsers()
         {
             return _context.Users.ToList();
         }
 
-        public void Add(User user)
+        public void AddUser(User user)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             }
         }
 
-        public void Delete(int id)
+        public void RemoveUser(int id)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             }
         }
 
-        public void ModifyName(int id, string newName)
+        public void EditName(int id, string newName)
         {
             try
             {
@@ -66,10 +66,10 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             }
             catch
             {
-                throw new Exception("Usuario no encontrado, o parámetros no válidos");
+                throw new Exception("Usuario no encontrado o parámetros no válidos");
             }
         }
-        public void ModifySurname(int id, string newSurname)
+        public void EditSurname(int id, string newSurname)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             }
             catch
             {
-                throw new Exception("Usuario no encontrado, o parámetros no válidos");
+                throw new Exception("Usuario no encontrado o parámetros no válidos");
             }
         }
 
