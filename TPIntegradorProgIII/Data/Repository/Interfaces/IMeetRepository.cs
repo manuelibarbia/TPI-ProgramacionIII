@@ -8,8 +8,8 @@ namespace TPIntegradorProgIII.Data.Repository
     {
         public Meet? GetSingleMeet(int id);
         public List<Meet> GetAllMeets();
-        public void AddMeet(Meet meet);
-        public void DeleteMeet(int id);
-        public void ModifyMeetDate(int id, string newMeetDate);
+        public void AddMeet(Meet newMeet);
+        public void RemoveMeet(int id);
+        public void EditMeetDate(int id, string newMeetDate);
     }
 }

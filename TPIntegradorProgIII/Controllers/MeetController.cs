@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TPIntegradorProgIII.Data.Repository;
-using TPIntegradorProgIII.Data.Repository.Implementations;
-using TPIntegradorProgIII.Data.Repository.Interfaces;
 using TPIntegradorProgIII.Entities;
 using TPIntegradorProgIII.Models;
 
@@ -28,10 +26,10 @@ namespace TPIntegradorProgIII.Controllers
             try
             {
                 List<Meet> meets = _meetRepository.GetAllMeets();
-                List<MeetDto> meetsList = new();
+                List<MeetResponse> meetsList = new();
                 foreach (var meet in meets)
                 {
-                    MeetDto response = new()
+                    MeetResponse response = new()
                     {
                         MeetName = meet.MeetName,
                         MeetDate = meet.MeetDate,
@@ -50,12 +48,12 @@ namespace TPIntegradorProgIII.Controllers
 
         [HttpGet]
         [Route("getMeetById/{id}")]
-        public IActionResult GetSingleMeet(int id)
+        public IActionResult GetMeetById(int id)
         {
             try
             {
                 Meet? meet = _meetRepository.GetSingleMeet(id);
-                MeetDto response = new()
+                MeetResponse response = new()
                 {
                     MeetName = meet.MeetName,
                     MeetDate = meet.MeetDate,
@@ -71,26 +69,24 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [HttpPost]
-        [Route("addMeet")]
-        public IActionResult AddMeet(CreateMeetDto dto)
+        [Route("createMeet")]
+        public IActionResult CreateMeet(AddMeetRequest request)
         {
             try
             {
-                List<Meet> meets = _meetRepository.GetAllMeets();
-
-                Meet meet = new()
+                Meet newMeet = new()
                 {
-                    MeetPlace = dto.MeetPlace,
-                    MeetName = dto.MeetName,
-                    MeetDate = dto.MeetDate,
+                    MeetPlace = request.MeetPlace,
+                    MeetName = request.MeetName,
+                    MeetDate = request.MeetDate,
                 };
-                MeetDto response = new()
+                MeetResponse response = new()
                 {
-                    MeetPlace = dto.MeetPlace,
-                    MeetName = dto.MeetName,
-                    MeetDate = dto.MeetDate,
+                    MeetPlace = newMeet.MeetPlace,
+                    MeetName = newMeet.MeetName,
+                    MeetDate = newMeet.MeetDate,
                 };
-                _meetRepository.AddMeet(meet);
+                _meetRepository.AddMeet(newMeet);
                 return Created("Meet creado", response);
             }
             catch (Exception ex)
@@ -100,12 +96,12 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [HttpDelete]
-        [Route("removeMeet/{id}")]
+        [Route("deleteMeet/{id}")]
         public IActionResult DeleteMeet(int id)
         {
             try
             {
-                _meetRepository.DeleteMeet(id);
+                _meetRepository.RemoveMeet(id);
                 return Ok("Meet borrado");
             }
             catch(Exception ex)
@@ -115,12 +111,12 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [HttpPut]
-        [Route("modifyMeetDate/{id}")]
+        [Route("modifyMeetDate/{id}/{newMeetDate}")]
         public IActionResult ModifyMeetDate (int id, string newMeetDate)
         {
             try
             {
-                _meetRepository.ModifyMeetDate(id, newMeetDate);
+                _meetRepository.EditMeetDate(id, newMeetDate);
                 return Ok("Fecha modificada");
             }
             catch(Exception ex)
