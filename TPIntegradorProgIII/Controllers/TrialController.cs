@@ -33,6 +33,7 @@ namespace TPIntegradorProgIII.Controllers
                         Id = trial.Id,
                         Distance = trial.Distance,
                         Style = trial.Style,
+                        MeetId = trial.MeetId,
                     };
                     trialsList.Add(response);
                 }
@@ -59,8 +60,8 @@ namespace TPIntegradorProgIII.Controllers
         {
             try
             {
-                //List<Meet> meets = GetALLTrials();
-                //ValidateMeetId(meets, request.MeetId); //validamos que el meet al cual se quiere asignar el trial exista
+                List<Meet> meets = _trialRepository.GetExistingMeets();
+                ValidateMeetId(meets, request.MeetId); //validamos que el meet al cual se quiere asignar el trial exista
                 Trial newTrial = new()
                 {
                     Distance = request.Distance,
@@ -97,10 +98,40 @@ namespace TPIntegradorProgIII.Controllers
             }
         }
 
-        [NonAction]
-        public void ValidateMeetId(List<Meet> meets, int Id)
+        [HttpPut]
+        [Route("modifyTrialDistance/{id}/{newDistance}")]
+        public IActionResult ModifyTrialDistance(int id, int newDistance)
         {
-            var meetExists = meets.First(m => m.Id == Id);
+            try
+            {
+                _trialRepository.EditTrialDistance(id, newDistance);
+                return Ok("Distancia modificada");
+            }
+            catch(Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("modifyTrialStyle/{id}/{newStyle}")]
+        public IActionResult ModifyTrialStyle(int id, string newStyle)
+        {
+            try
+            {
+                _trialRepository.EditTrialStyle(id, newStyle);
+                return Ok("Estilo modificado");
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+        [NonAction]
+        public void ValidateMeetId(List<Meet> meets, int meetId)
+        {
+            var meetExists = meets.FirstOrDefault(m => m.Id == meetId);
             if (meetExists == null)
             {
                 throw new Exception("Meet no encontrado, revisar Id.");
