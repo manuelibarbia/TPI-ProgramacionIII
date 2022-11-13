@@ -22,50 +22,53 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [HttpGet]
-        [Route("getAllMeet")]
+        [Route("getAllMeets")]
         public IActionResult GetAllMeets()
         {
-
-            List<Meet> meets = _meetRepository.GetAllMeets();
-            List<MeetDto> meetsList = new();
-            foreach (var meet in meets)
+            try
             {
-                MeetDto response = new()
+                List<Meet> meets = _meetRepository.GetAllMeets();
+                List<MeetDto> meetsList = new();
+                foreach (var meet in meets)
                 {
-                   MeetName = meet.MeetName,
-                   MeetDate = meet.MeetDate,
-                   MeetPlace = meet.MeetPlace,
-                   Id=meet.Id,
-                };
-                meetsList.Add(response);
+                    MeetDto response = new()
+                    {
+                        MeetName = meet.MeetName,
+                        MeetDate = meet.MeetDate,
+                        MeetPlace = meet.MeetPlace,
+                        Id = meet.Id,
+                    };
+                    meetsList.Add(response);
+                }
+                return Ok(meetsList);
             }
-            return Ok(meetsList);
-
+            catch(Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
 
         [HttpGet]
-        [Route("getOneMeet/{id}")]
-        public IActionResult GetOneMeet(int id)
+        [Route("getMeetById/{id}")]
+        public IActionResult GetSingleMeet(int id)
         {
-            Meet? meet = _meetRepository.GetOneMeet(id);
-            MeetDto response = new()
+            try
             {
-                MeetName = meet.MeetName,
-                MeetDate = meet.MeetDate,
-                MeetPlace = meet.MeetPlace,
-                Id = meet.Id,
-            };
-            return Ok(response);
+                Meet? meet = _meetRepository.GetSingleMeet(id);
+                MeetDto response = new()
+                {
+                    MeetName = meet.MeetName,
+                    MeetDate = meet.MeetDate,
+                    MeetPlace = meet.MeetPlace,
+                    Id = meet.Id,
+                };
+                return Ok(response);
+            }
+            catch(Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
-
-        [HttpDelete]
-        [Route("removeMeet/{id}")]
-        public IActionResult DeleteMeet(int id)
-        {
-            _meetRepository.DeleteMeet(id);
-            return Ok("Meet borrado");
-        }
-
 
         [HttpPost]
         [Route("addMeet")]
@@ -74,13 +77,12 @@ namespace TPIntegradorProgIII.Controllers
             try
             {
                 List<Meet> meets = _meetRepository.GetAllMeets();
-                
+
                 Meet meet = new()
                 {
                     MeetPlace = dto.MeetPlace,
                     MeetName = dto.MeetName,
                     MeetDate = dto.MeetDate,
-                    
                 };
                 MeetDto response = new()
                 {
@@ -89,16 +91,44 @@ namespace TPIntegradorProgIII.Controllers
                     MeetDate = dto.MeetDate,
                 };
                 _meetRepository.AddMeet(meet);
-                return Created("Usuario creado", response);
+                return Created("Meet creado", response);
             }
-            catch (Exception error)
+            catch (Exception ex)
             {
-                return Problem(error.Message);
+                return Problem(ex.Message);
             }
         }
 
-    }
+        [HttpDelete]
+        [Route("removeMeet/{id}")]
+        public IActionResult DeleteMeet(int id)
+        {
+            try
+            {
+                _meetRepository.DeleteMeet(id);
+                return Ok("Meet borrado");
+            }
+            catch(Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
 
+        [HttpPut]
+        [Route("modifyMeetDate/{id}")]
+        public IActionResult ModifyMeetDate (int id, string newMeetDate)
+        {
+            try
+            {
+                _meetRepository.ModifyMeetDate(id, newMeetDate);
+                return Ok("Fecha modificada");
+            }
+            catch(Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+    }
 }
 
 
