@@ -1,8 +1,6 @@
-﻿using TPIntegradorProgIII.Entities;
-
-namespace TPIntegradorProgIII.Models
+﻿namespace TPIntegradorProgIII.Models
 {
-    public class TrialDto
+    public class AddTrialRequest
     {
         public int Id { get; set; }
         public int Distance { get; set; }

@@ -4,9 +4,9 @@ namespace TPIntegradorProgIII.Data.Repository.Interfaces
 {
     public interface ITrialRepository
     {
-        public Trial? GetOneTrial(int id);
-        public List<Trial> GetAllTrials();
+        public Trial? GetSingleTrial(int id);
+        public List<Trial> GetTrials();
         public void AddTrial(Trial trial);
-        public void DeleteTrial(int id);
+        public void RemoveTrial(int id);
     }
 }
