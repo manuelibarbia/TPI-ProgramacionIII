@@ -27,7 +27,7 @@ namespace TPIntegradorProgIII.Controllers
         {
             try
             {
-                List<User> users = _userRepository.GetAllUsers();
+                List<User> users = _userRepository.GetUsers();
                 List<UserResponse> usersList = new();
                 foreach (var user in users)
                 {
@@ -52,12 +52,12 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [HttpGet]
-        [Route("getOne/{id}")]
-        public IActionResult GetSingleUser(int id)
+        [Route("getUserById/{id}")]
+        public IActionResult GetUserById(int id)
         {
             try
             {
-                User? user = _userRepository.GetOne(id);
+                User? user = _userRepository.GetSingleUser(id);
                 UserResponse response = new()
                 {
                     Id = user.Id,
@@ -78,21 +78,21 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [HttpPost]
-        [Route("addUser")]
-        public IActionResult AddUser(AddUserRequest dto)
+        [Route("createUser")]
+        public IActionResult CreateUser(AddUserRequest request)
         {
             try
             {
-                List<User> users = _userRepository.GetAllUsers();
-                ValidateDNI(users, dto.DNI);
+                List<User> users = _userRepository.GetUsers();
+                ValidateDNI(users, request.DNI);
                 User user = new()
                 {
-                    Name = dto.Name,
-                    Surname = dto.Surname,
-                    UserName = dto.UserName,
-                    DNI = dto.DNI,
-                    Password = dto.Password,
-                    Email = dto.Email
+                    Name = request.Name,
+                    Surname = request.Surname,
+                    UserName = request.UserName,
+                    DNI = request.DNI,
+                    Password = request.Password,
+                    Email = request.Email
                 };
                 UserResponse response = new()
                 {
@@ -104,7 +104,7 @@ namespace TPIntegradorProgIII.Controllers
                     Password = user.Password,
                     Email = user.Email,
                 };
-                _userRepository.Add(user);
+                _userRepository.AddUser(user);
                 return Created("Usuario creado", response);
             }
             catch(Exception ex)
@@ -114,12 +114,12 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [HttpDelete]
-        [Route("removeUser/{id}")]
+        [Route("deleteUser/{id}")]
         public IActionResult DeleteUser(int id)
         {
             try
             {
-                _userRepository.Delete(id);
+                _userRepository.RemoveUser(id);
                 return Ok("Usuario borrado");
             }
             catch(Exception ex)
@@ -130,12 +130,12 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [HttpPut]
-        [Route("modifyName")]
+        [Route("modifyName/{id}/{newName}")]
         public IActionResult ModifyName(int id, string newName)
         {
             try
             {
-                _userRepository.ModifyName(id, newName);
+                _userRepository.EditName(id, newName);
                 return Ok("Nombre editado");
             }
             catch(Exception ex)
@@ -145,12 +145,12 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [HttpPut]
-        [Route("modifySurname")]
+        [Route("modifySurname/{id}/{newSurname}")]
         public IActionResult ModifySurname(int id, string newSurname)
         {
             try
             {
-                _userRepository.ModifySurname(id, newSurname);
+                _userRepository.EditSurname(id, newSurname);
                 return Ok("Apellido editado");
             }
             catch (Exception ex)

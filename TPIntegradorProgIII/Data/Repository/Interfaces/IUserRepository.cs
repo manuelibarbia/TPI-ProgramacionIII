@@ -5,12 +5,12 @@ namespace TPIntegradorProgIII.Data.Repository.Interfaces
 {
     public interface IUserRepository
     {
-        public User? GetOne(int id);
-        public List<User> GetAllUsers();
-        public void Add(User user);
-        public void Delete(int id);
-        public void ModifyName(int id, string newName);
-        public void ModifySurname(int id, string surname);
+        public User? GetSingleUser(int id);
+        public List<User> GetUsers();
+        public void AddUser(User user);
+        public void RemoveUser(int id);
+        public void EditName(int id, string newName);
+        public void EditSurname(int id, string surname);
         public User? ValidateUser(AuthenticationRequestBody user);
     }
 }
