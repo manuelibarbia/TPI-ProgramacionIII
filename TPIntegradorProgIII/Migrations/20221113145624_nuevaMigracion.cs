@@ -4,7 +4,7 @@
 
 namespace TPIntegradorProgIII.Migrations
 {
-    public partial class prueba1 : Migration
+    public partial class nuevaMigracion : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -90,17 +90,17 @@ namespace TPIntegradorProgIII.Migrations
             migrationBuilder.InsertData(
                 table: "Meets",
                 columns: new[] { "Id", "MeetDate", "MeetName", "MeetPlace" },
-                values: new object[] { 1, "20/12/2022", "MeetPiola", "Piolalandia" });
+                values: new object[] { 1, "20/12/2022", "Primer Meet", "Rosario" });
 
             migrationBuilder.InsertData(
                 table: "Meets",
                 columns: new[] { "Id", "MeetDate", "MeetName", "MeetPlace" },
-                values: new object[] { 2, "25/12/2022", "MeetPiola2", "Piolalandia" });
+                values: new object[] { 2, "25/12/2022", "Segundo Meet", "Buenos Aires" });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "DNI", "Discriminator", "Email", "Name", "Password", "Surname", "UserName" },
-                values: new object[] { 1, "44539210", "Swimmer", "nbologna31@gmail.com", "Nicolas", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Bologna", "NicoBo" });
+                values: new object[] { 1, "44555666", "Swimmer", "nbologna31@gmail.com", "Nicolas", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Bologna", "NicoBo" });
 
             migrationBuilder.InsertData(
                 table: "Users",
@@ -120,7 +120,7 @@ namespace TPIntegradorProgIII.Migrations
             migrationBuilder.InsertData(
                 table: "Trials",
                 columns: new[] { "Id", "Distance", "MeetId", "Style" },
-                values: new object[] { 2, 150, 2, "Croll" });
+                values: new object[] { 2, 150, 2, "Espalda" });
 
             migrationBuilder.InsertData(
                 table: "RegisteredSwimmersInTrials",

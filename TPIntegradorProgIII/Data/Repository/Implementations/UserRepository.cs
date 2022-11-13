@@ -57,15 +57,28 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             }
         }
 
-        public void Edit(int id, string newEmail)
+        public void ModifyName(int id, string newName)
         {
             try
             {
-                _context.Users.First(x => x.Id == id).Email = newEmail;
+                    _context.Users.First(x => x.Id == id).Name = newName;
+                    _context.SaveChanges();
             }
             catch
             {
-                throw new Exception("Usuario no encontrado, revisar si el Id es correcto");
+                throw new Exception("Usuario no encontrado, o parámetros no válidos");
+            }
+        }
+        public void ModifySurname(int id, string newSurname)
+        {
+            try
+            {
+                _context.Users.First(x => x.Id == id).Surname = newSurname;
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Usuario no encontrado, o parámetros no válidos");
             }
         }
 

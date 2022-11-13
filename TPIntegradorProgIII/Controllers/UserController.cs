@@ -33,9 +33,13 @@ namespace TPIntegradorProgIII.Controllers
                 {
                     UserResponse response = new()
                         {
-                            UserName = user.UserName,
                             Id = user.Id,
+                            Name = user.Name,
+                            Surname = user.Surname,
+                            UserName = user.UserName,
+                            DNI = user.DNI,
                             Password = user.Password,
+                            Email = user.Email,
                         };
                     usersList.Add(response);
                 }
@@ -51,13 +55,26 @@ namespace TPIntegradorProgIII.Controllers
         [Route("getOne/{id}")]
         public IActionResult GetSingleUser(int id)
         {
-            User? user = _userRepository.GetOne(id);
-            UserResponse response = new()
+            try
             {
-                Name = user.Name,
-                UserName = user.UserName,
-            };
-            return Ok(response);
+                User? user = _userRepository.GetOne(id);
+                UserResponse response = new()
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    Surname = user.Surname,
+                    UserName = user.UserName,
+                    DNI = user.DNI,
+                    Password = user.Password,
+                    Email = user.Email,
+                };
+                return Ok(response);
+            }
+            catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+            
         }
 
         [HttpPost]
@@ -79,18 +96,20 @@ namespace TPIntegradorProgIII.Controllers
                 };
                 UserResponse response = new()
                 {
+                    Id = user.Id,
                     Name = user.Name,
                     Surname = user.Surname,
                     UserName = user.UserName,
                     DNI = user.DNI,
-                    Email = user.Email
+                    Password = user.Password,
+                    Email = user.Email,
                 };
                 _userRepository.Add(user);
                 return Created("Usuario creado", response);
             }
-            catch(Exception error)
+            catch(Exception ex)
             {
-                return Problem(error.Message);
+                return Problem(ex.Message);
             }
         }
 
@@ -98,8 +117,46 @@ namespace TPIntegradorProgIII.Controllers
         [Route("removeUser/{id}")]
         public IActionResult DeleteUser(int id)
         {
-            _userRepository.Delete(id);
-            return Ok("Usuario borrado");
+            try
+            {
+                _userRepository.Delete(id);
+                return Ok("Usuario borrado");
+            }
+            catch(Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+            
+        }
+
+        [HttpPut]
+        [Route("modifyName")]
+        public IActionResult ModifyName(int id, string newName)
+        {
+            try
+            {
+                _userRepository.ModifyName(id, newName);
+                return Ok("Nombre editado");
+            }
+            catch(Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("modifySurname")]
+        public IActionResult ModifySurname(int id, string newSurname)
+        {
+            try
+            {
+                _userRepository.ModifySurname(id, newSurname);
+                return Ok("Apellido editado");
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
 
         [NonAction]
