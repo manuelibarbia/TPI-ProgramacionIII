@@ -25,7 +25,7 @@ namespace TPIntegradorProgIII.Controllers
         {
             try
             {
-                List<Meet> meets = _meetRepository.GetAllMeets();
+                List<Meet> meets = _meetRepository.GetMeets();
                 List<MeetResponse> meetsList = new();
                 foreach (var meet in meets)
                 {

@@ -25,7 +25,7 @@ namespace TPIntegradorProgIII.Data.Repository
             }
         }
 
-        public List<Meet> GetAllMeets()
+        public List<Meet> GetMeets()
         {
             return _context.Meets.ToList();
         }
