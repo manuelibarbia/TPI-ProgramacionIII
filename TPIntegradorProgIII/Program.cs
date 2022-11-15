@@ -68,13 +68,11 @@ builder.Services.AddSwaggerGen();
 #region Repositories
 builder.Services.AddScoped<IMeetRepository, MeetRepository>();
 builder.Services.AddScoped<ITrialRepository, TrialRepository>();
-builder.Services.AddScoped<ISwimmerRepository, SwimmerRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 #endregion
 
 #region Services
 builder.Services.AddScoped<ICustomAuthenticationService, AutenticacionService>();
-builder.Services.AddScoped<ISwimmerService, SwimmerService>();
 #endregion
 
 builder.Services.AddControllers().AddJsonOptions(x =>
