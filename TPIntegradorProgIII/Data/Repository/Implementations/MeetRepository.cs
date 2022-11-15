@@ -68,6 +68,11 @@ namespace TPIntegradorProgIII.Data.Repository
                 throw new Exception("Meet no encontrado o parámetros no válidos");
             }
         }
+
+        public List<Trial> GetTrials(int id)
+        {
+            return _context.Trials.Where(t => t.MeetId == id).ToList();
+        }
    }
 
 }

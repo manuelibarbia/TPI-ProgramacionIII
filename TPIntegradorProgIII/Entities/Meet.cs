@@ -18,6 +18,6 @@ namespace TPIntegradorProgIII.Entities
 
         [Required]
         public string MeetPlace { get; set; }
-        public ICollection<Trial> Trials { get; set; } = new List<Trial>();
+        public List<Trial> Trials { get; set; } = new List<Trial>();
     }
 }

@@ -23,27 +23,29 @@ namespace TPIntegradorProgIII.Controllers
         [Route("getAllMeets")]
         public IActionResult GetAllMeets()
         {
+            List<MeetResponse> meetsToReturn = new List<MeetResponse>();
             try
             {
                 List<Meet> meets = _meetRepository.GetMeets();
-                List<MeetResponse> meetsList = new();
                 foreach (var meet in meets)
                 {
+                    meet.Trials = _meetRepository.GetTrials(meet.Id);
                     MeetResponse response = new()
                     {
                         Id = meet.Id,
                         MeetName = meet.MeetName,
                         MeetDate = meet.MeetDate,
-                        MeetPlace = meet.MeetPlace
+                        MeetPlace = meet.MeetPlace,
+                        Trials = meet.Trials,
                     };
-                    meetsList.Add(response);
+                    meetsToReturn.Add(response);
                 }
-                return Ok(meetsList);
             }
             catch(Exception ex)
             {
                 return Problem(ex.Message);
             }
+            return Ok(meetsToReturn);
         }
 
         [HttpGet]
