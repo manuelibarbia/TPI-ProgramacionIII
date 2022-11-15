@@ -2,7 +2,7 @@
 
 namespace TPIntegradorProgIII.Models
 {
-    public class AddUserRequest
+    public class AddSwimmerRequest
     {
         [MaxLength(10)]
         public string Name { get; set; }

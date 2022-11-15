@@ -6,19 +6,19 @@ using TPIntegradorProgIII.Models;
 
 namespace TPIntegradorProgIII.Data.Repository.Implementations
 {
-    public class UserRepository : IUserRepository
+    public class SwimmerRepository : ISwimmerRepository
     {
         private readonly TPContext _context;
-        public UserRepository(TPContext context)
+        public SwimmerRepository(TPContext context)
         {
             _context = context;
         }
 
-        public User? GetSingleUser(int id)
+        public Swimmer? GetSingleUser(int id)
         {
             try
             {
-                return _context.Users.First(x => x.Id == id);
+                return _context.Swimmers.First(x => x.Id == id);
             }
             catch
             {
@@ -26,16 +26,16 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             }
         }
 
-        public List<User> GetUsers()
+        public List<Swimmer> GetUsers()
         {
-            return _context.Users.ToList();
+            return _context.Swimmers.ToList();
         }
 
-        public void AddUser(User user)
+        public void AddUser(Swimmer user)
         {
             try
             {
-                _context.Users.Add(user);
+                _context.Swimmers.Add(user);
                 _context.SaveChanges();
             }
             catch
@@ -48,7 +48,7 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
         {
             try
             {
-                _context.Users.Remove(_context.Users.First(x => x.Id == id));
+                _context.Swimmers.Remove(_context.Swimmers.First(x => x.Id == id));
                 _context.SaveChanges();
             }
             catch
@@ -61,7 +61,7 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
         {
             try
             {
-                    _context.Users.First(x => x.Id == id).Name = newName;
+                    _context.Swimmers.First(x => x.Id == id).Name = newName;
                     _context.SaveChanges();
             }
             catch
@@ -73,7 +73,7 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
         {
             try
             {
-                _context.Users.First(x => x.Id == id).Surname = newSurname;
+                _context.Swimmers.First(x => x.Id == id).Surname = newSurname;
                 _context.SaveChanges();
             }
             catch
@@ -82,10 +82,10 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             }
         }
 
-        public User? ValidateUser(AuthenticationRequestBody dto)
+        public Swimmer? ValidateUser(AuthenticationRequestBody dto)
         {
             var HashPassword = Security.CreateSHA512(dto.Password);
-            return _context.Users.SingleOrDefault(u => u.UserName == dto.UserName && u.Password == Security.CreateSHA512(dto.Password));
+            return _context.Swimmers.SingleOrDefault(u => u.UserName == dto.UserName && u.Password == Security.CreateSHA512(dto.Password));
         }
     }
 }

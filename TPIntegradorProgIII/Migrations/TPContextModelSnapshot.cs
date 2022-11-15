@@ -82,6 +82,73 @@ namespace TPIntegradorProgIII.Migrations
                         });
                 });
 
+            modelBuilder.Entity("TPIntegradorProgIII.Entities.Swimmer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("DNI")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Swimmers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DNI = "44555666",
+                            Email = "nbologna31@gmail.com",
+                            Name = "Nicolas",
+                            Password = "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87",
+                            Surname = "Bologna",
+                            UserName = "string"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DNI = "33444555",
+                            Email = "Jperez@gmail.com",
+                            Name = "Juan",
+                            Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
+                            Surname = "Perez",
+                            UserName = "JuanPe"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DNI = "55666777",
+                            Email = "pgarcia@gmail.com",
+                            Name = "Pedro",
+                            Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
+                            Surname = "Garcia",
+                            UserName = "PeGarcía"
+                        });
+                });
+
             modelBuilder.Entity("TPIntegradorProgIII.Entities.Trial", b =>
                 {
                     b.Property<int>("Id")
@@ -118,86 +185,6 @@ namespace TPIntegradorProgIII.Migrations
                             Distance = 150,
                             MeetId = 2,
                             Style = "Espalda"
-                        });
-                });
-
-            modelBuilder.Entity("TPIntegradorProgIII.Entities.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("DNI")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
-                });
-
-            modelBuilder.Entity("TPIntegradorProgIII.Entities.Swimmer", b =>
-                {
-                    b.HasBaseType("TPIntegradorProgIII.Entities.User");
-
-                    b.HasDiscriminator().HasValue("Swimmer");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DNI = "44555666",
-                            Email = "nbologna31@gmail.com",
-                            Name = "Nicolas",
-                            Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
-                            Surname = "Bologna",
-                            UserName = "NicoBo"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DNI = "33444555",
-                            Email = "Jperez@gmail.com",
-                            Name = "Juan",
-                            Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
-                            Surname = "Perez",
-                            UserName = "JuanPe"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DNI = "55666777",
-                            Email = "pgarcia@gmail.com",
-                            Name = "Pedro",
-                            Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
-                            Surname = "Garcia",
-                            UserName = "PeGarcía"
                         });
                 });
 
