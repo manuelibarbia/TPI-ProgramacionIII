@@ -14,7 +14,7 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             _context = context;
         }
 
-        public Swimmer? GetSingleUser(int id)
+        public Swimmer? GetSingleSwimmer(int id)
         {
             try
             {
@@ -22,29 +22,29 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             }
             catch
             {
-                throw new Exception("Usuario no encontrado");
+                throw new Exception("Nadador no encontrado");
             }
         }
 
-        public List<Swimmer> GetUsers()
+        public List<Swimmer> GetSwimmers()
         {
             return _context.Swimmers.ToList();
         }
 
-        public void AddUser(Swimmer user)
+        public void AddSwimmer(Swimmer swimmer)
         {
             try
             {
-                _context.Swimmers.Add(user);
+                _context.Swimmers.Add(swimmer);
                 _context.SaveChanges();
             }
             catch
             {
-                throw new Exception("Error al añadir usuario");
+                throw new Exception("Error al añadir nadador");
             }
         }
 
-        public void RemoveUser(int id)
+        public void RemoveSwimmer(int id)
         {
             try
             {
@@ -53,11 +53,11 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             }
             catch
             {
-                throw new Exception("Usuario no encontrado");
+                throw new Exception("Nadador no encontrado");
             }
         }
 
-        public void EditName(int id, string newName)
+        public void EditSwimmerName(int id, string newName)
         {
             try
             {
@@ -66,10 +66,10 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             }
             catch
             {
-                throw new Exception("Usuario no encontrado o parámetros no válidos");
+                throw new Exception("Nadador no encontrado o parámetros no válidos");
             }
         }
-        public void EditSurname(int id, string newSurname)
+        public void EditSwimmerSurname(int id, string newSurname)
         {
             try
             {
@@ -78,11 +78,11 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             }
             catch
             {
-                throw new Exception("Usuario no encontrado o parámetros no válidos");
+                throw new Exception("Nadador no encontrado o parámetros no válidos");
             }
         }
 
-        public Swimmer? ValidateUser(AuthenticationRequestBody dto)
+        public Swimmer? ValidateSwimmer(AuthenticationRequestBody dto)
         {
             var HashPassword = Security.CreateSHA512(dto.Password);
             return _context.Swimmers.SingleOrDefault(u => u.UserName == dto.UserName && u.Password == Security.CreateSHA512(dto.Password));

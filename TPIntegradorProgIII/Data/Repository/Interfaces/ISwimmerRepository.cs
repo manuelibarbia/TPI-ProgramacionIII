@@ -5,12 +5,12 @@ namespace TPIntegradorProgIII.Data.Repository.Interfaces
 {
     public interface ISwimmerRepository
     {
-        public Swimmer? GetSingleUser(int id);
-        public List<Swimmer> GetUsers();
-        public void AddUser(Swimmer user);
-        public void RemoveUser(int id);
-        public void EditName(int id, string newName);
-        public void EditSurname(int id, string surname);
-        public Swimmer? ValidateUser(AuthenticationRequestBody user);
+        public Swimmer? GetSingleSwimmer(int id);
+        public List<Swimmer> GetSwimmers();
+        public void AddSwimmer(Swimmer swimmer);
+        public void RemoveSwimmer(int id);
+        public void EditSwimmerName(int id, string newName);
+        public void EditSwimmerSurname(int id, string surname);
+        public Swimmer? ValidateSwimmer(AuthenticationRequestBody swimmer);
     }
 }
