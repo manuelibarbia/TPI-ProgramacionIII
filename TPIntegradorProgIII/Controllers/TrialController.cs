@@ -34,7 +34,7 @@ namespace TPIntegradorProgIII.Controllers
                         Id = trial.Id,
                         Distance = trial.Distance,
                         Style = trial.Style,
-                        TrialMeet = _trialRepository.GetSingleMeet(trial.MeetId)[0],
+                        //TrialMeet = _trialRepository.GetSingleMeet(trial.MeetId)[0],
                         RegisteredSwimmers = trial.RegisteredSwimmers,
                     };
                     trialsList.Add(response);
