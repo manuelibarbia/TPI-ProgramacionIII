@@ -7,14 +7,14 @@ namespace TPIntegradorProgIII.Services.Implementations
 {
     public class AutenticacionService : ICustomAuthenticationService
     {
-        private readonly IUserRepository _userRepository;
+        private readonly ISwimmerRepository _userRepository;
 
-        public AutenticacionService(IUserRepository userRepository)
+        public AutenticacionService(ISwimmerRepository userRepository)
         {
             _userRepository = userRepository;
         }
         
-        public User? ValidateUser(AuthenticationRequestBody authenticationRequest)
+        public Swimmer? ValidateUser(AuthenticationRequestBody authenticationRequest)
         {
             if (string.IsNullOrEmpty(authenticationRequest.UserName) || string.IsNullOrEmpty(authenticationRequest.Password))
                 return null;

@@ -11,27 +11,27 @@ namespace TPIntegradorProgIII.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class UserController : ControllerBase
+    public class SwimmerController : ControllerBase
     {
 
-        private readonly IUserRepository _userRepository;
+        private readonly ISwimmerRepository _swimmerRepository;
 
-        public UserController(IUserRepository userRepository)
+        public SwimmerController(ISwimmerRepository swimmerRepository)
         {
-            _userRepository = userRepository;
+            _swimmerRepository = swimmerRepository;
         }
 
         [HttpGet]
-        [Route("getAllUsers")]
-        public IActionResult GetAllUsers()
+        [Route("getAllSwimmers")]
+        public IActionResult GetAllSwimmers()
         {
             try
             {
-                List<User> users = _userRepository.GetUsers();
-                List<UserResponse> usersList = new();
+                List<Swimmer> users = _swimmerRepository.GetUsers();
+                List<SwimmerResponse> usersList = new();
                 foreach (var user in users)
                 {
-                    UserResponse response = new()
+                    SwimmerResponse response = new()
                         {
                             Id = user.Id,
                             Name = user.Name,
@@ -51,13 +51,13 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [HttpGet]
-        [Route("getUserById/{id}")]
-        public IActionResult GetUserById(int id)
+        [Route("getSwimmerById/{id}")]
+        public IActionResult GetSwimmerById(int id)
         {
             try
             {
-                User? user = _userRepository.GetSingleUser(id);
-                UserResponse response = new()
+                Swimmer? user = _swimmerRepository.GetSingleUser(id);
+                SwimmerResponse response = new()
                 {
                     Id = user.Id,
                     Name = user.Name,
@@ -76,14 +76,14 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [HttpPost]
-        [Route("createUser")]
-        public IActionResult CreateUser(AddUserRequest request)
+        [Route("createSwimmer")]
+        public IActionResult CreateSwimmer(AddSwimmerRequest request)
         {
             try
             {
-                List<User> users = _userRepository.GetUsers();
+                List<Swimmer> users = _swimmerRepository.GetUsers();
                 ValidateDNI(users, request.DNI);
-                User user = new()
+                Swimmer user = new()
                 {
                     Name = request.Name,
                     Surname = request.Surname,
@@ -92,7 +92,7 @@ namespace TPIntegradorProgIII.Controllers
                     Password = request.Password,
                     Email = request.Email
                 };
-                UserResponse response = new()
+                SwimmerResponse response = new()
                 {
                     Id = user.Id,
                     Name = user.Name,
@@ -101,7 +101,7 @@ namespace TPIntegradorProgIII.Controllers
                     DNI = user.DNI,
                     Email = user.Email,
                 };
-                _userRepository.AddUser(user);
+                _swimmerRepository.AddUser(user);
                 return Created("Usuario creado", response);
             }
             catch(Exception ex)
@@ -111,12 +111,12 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [HttpDelete]
-        [Route("deleteUser/{id}")]
-        public IActionResult DeleteUser(int id)
+        [Route("deleteSwimmer/{id}")]
+        public IActionResult DeleteSwimmer(int id)
         {
             try
             {
-                _userRepository.RemoveUser(id);
+                _swimmerRepository.RemoveUser(id);
                 return Ok("Usuario borrado");
             }
             catch(Exception ex)
@@ -127,12 +127,12 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [HttpPut]
-        [Route("modifyName/{id}/{newName}")]
+        [Route("modifySwimmerName/{id}/{newName}")]
         public IActionResult ModifyName(int id, string newName)
         {
             try
             {
-                _userRepository.EditName(id, newName);
+                _swimmerRepository.EditName(id, newName);
                 return Ok("Nombre editado");
             }
             catch(Exception ex)
@@ -142,12 +142,12 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [HttpPut]
-        [Route("modifySurname/{id}/{newSurname}")]
+        [Route("modifySwimmerSurname/{id}/{newSurname}")]
         public IActionResult ModifySurname(int id, string newSurname)
         {
             try
             {
-                _userRepository.EditSurname(id, newSurname);
+                _swimmerRepository.EditSurname(id, newSurname);
                 return Ok("Apellido editado");
             }
             catch (Exception ex)
@@ -157,7 +157,7 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [NonAction]
-        public void ValidateDNI(List<User> users, string DNI)
+        public void ValidateDNI(List<Swimmer> users, string DNI)
         {
             var inUse = users.FirstOrDefault(u => u.DNI == DNI);
             if (inUse != null)

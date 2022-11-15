@@ -4,7 +4,7 @@
 
 namespace TPIntegradorProgIII.Migrations
 {
-    public partial class nuevaMigracion : Migration
+    public partial class migracion : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,7 +24,7 @@ namespace TPIntegradorProgIII.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "Swimmers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -34,12 +34,11 @@ namespace TPIntegradorProgIII.Migrations
                     DNI = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Surname = table.Column<string>(type: "TEXT", nullable: false),
-                    Discriminator = table.Column<string>(type: "TEXT", nullable: false)
+                    Surname = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Swimmers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -74,15 +73,15 @@ namespace TPIntegradorProgIII.Migrations
                 {
                     table.PrimaryKey("PK_RegisteredSwimmersInTrials", x => new { x.RegisteredSwimmersId, x.TrialsAttendedId });
                     table.ForeignKey(
-                        name: "FK_RegisteredSwimmersInTrials_Trials_TrialsAttendedId",
-                        column: x => x.TrialsAttendedId,
-                        principalTable: "Trials",
+                        name: "FK_RegisteredSwimmersInTrials_Swimmers_RegisteredSwimmersId",
+                        column: x => x.RegisteredSwimmersId,
+                        principalTable: "Swimmers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RegisteredSwimmersInTrials_Users_RegisteredSwimmersId",
-                        column: x => x.RegisteredSwimmersId,
-                        principalTable: "Users",
+                        name: "FK_RegisteredSwimmersInTrials_Trials_TrialsAttendedId",
+                        column: x => x.TrialsAttendedId,
+                        principalTable: "Trials",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -98,19 +97,19 @@ namespace TPIntegradorProgIII.Migrations
                 values: new object[] { 2, "25/12/2022", "Segundo Meet", "Buenos Aires" });
 
             migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "DNI", "Discriminator", "Email", "Name", "Password", "Surname", "UserName" },
-                values: new object[] { 1, "44555666", "Swimmer", "nbologna31@gmail.com", "Nicolas", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Bologna", "NicoBo" });
+                table: "Swimmers",
+                columns: new[] { "Id", "DNI", "Email", "Name", "Password", "Surname", "UserName" },
+                values: new object[] { 1, "44555666", "nbologna31@gmail.com", "Nicolas", "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87", "Bologna", "string" });
 
             migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "DNI", "Discriminator", "Email", "Name", "Password", "Surname", "UserName" },
-                values: new object[] { 2, "33444555", "Swimmer", "Jperez@gmail.com", "Juan", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Perez", "JuanPe" });
+                table: "Swimmers",
+                columns: new[] { "Id", "DNI", "Email", "Name", "Password", "Surname", "UserName" },
+                values: new object[] { 2, "33444555", "Jperez@gmail.com", "Juan", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Perez", "JuanPe" });
 
             migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "DNI", "Discriminator", "Email", "Name", "Password", "Surname", "UserName" },
-                values: new object[] { 3, "55666777", "Swimmer", "pgarcia@gmail.com", "Pedro", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Garcia", "PeGarcía" });
+                table: "Swimmers",
+                columns: new[] { "Id", "DNI", "Email", "Name", "Password", "Surname", "UserName" },
+                values: new object[] { 3, "55666777", "pgarcia@gmail.com", "Pedro", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Garcia", "PeGarcía" });
 
             migrationBuilder.InsertData(
                 table: "Trials",
@@ -149,10 +148,10 @@ namespace TPIntegradorProgIII.Migrations
                 name: "RegisteredSwimmersInTrials");
 
             migrationBuilder.DropTable(
-                name: "Trials");
+                name: "Swimmers");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Trials");
 
             migrationBuilder.DropTable(
                 name: "Meets");

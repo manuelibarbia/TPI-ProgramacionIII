@@ -5,6 +5,6 @@ namespace TPIntegradorProgIII.Services.Interfaces
 {
     public interface ICustomAuthenticationService
     {
-        User? ValidateUser(AuthenticationRequestBody authenticationRequestBody);
+        Swimmer? ValidateUser(AuthenticationRequestBody authenticationRequestBody);
     }
 }

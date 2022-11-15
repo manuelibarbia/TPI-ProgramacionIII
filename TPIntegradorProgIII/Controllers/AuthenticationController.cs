@@ -13,9 +13,9 @@ namespace TPIntegradorProgIII.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IConfiguration _config;
-        private readonly IUserRepository _userRepository;
+        private readonly ISwimmerRepository _userRepository;
 
-        public AuthenticationController(IConfiguration config, IUserRepository userRepository)
+        public AuthenticationController(IConfiguration config, ISwimmerRepository userRepository)
         {
             _config = config; //Hacemos la inyección para poder usar el appsettings.json
             this._userRepository = userRepository;

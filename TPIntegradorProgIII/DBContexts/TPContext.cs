@@ -8,7 +8,6 @@ namespace TPIntegradorProgIII.DBContexts
         public DbSet<Swimmer> Swimmers { get; set; } //lo que hagamos con LINQ sobre estos DbSets lo va a transformar en consultas SQL
         public DbSet<Meet> Meets { get; set; } //Los warnings los podemos obviar porque DbContext se encarga de eso.
         public DbSet<Trial> Trials { get; set; }
-        public DbSet<User> Users { get; set; }
 
         public TPContext(DbContextOptions<TPContext> options) : base(options) //Acá estamos llamando al constructor de DbContext que es el que acepta las opciones
         {
@@ -64,8 +63,8 @@ namespace TPIntegradorProgIII.DBContexts
                 Name = "Nicolas",
                 Surname = "Bologna",
                 Email = "nbologna31@gmail.com",
-                Password = "123456",
-                UserName = "NicoBo",
+                Password = "string",
+                UserName = "string",
                 DNI = "44555666"
             };
 
