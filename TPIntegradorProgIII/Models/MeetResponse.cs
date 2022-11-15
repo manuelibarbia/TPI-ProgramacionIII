@@ -8,6 +8,6 @@ namespace TPIntegradorProgIII.Models
         public string MeetName { get; set; }
         public string MeetDate { get; set; }
         public string MeetPlace { get; set; }
-        public ICollection<Trial> Trials { get; set; } = new List<Trial>();
+        public List<Trial> Trials { get; set; } = new List<Trial>();
     }
 }

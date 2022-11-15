@@ -8,6 +8,7 @@ using System.Text;
 using TPIntegradorProgIII.Data.Repository.Implementations;
 using TPIntegradorProgIII.Services.Interfaces;
 using TPIntegradorProgIII.Data.Repository;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -76,6 +77,8 @@ builder.Services.AddScoped<ICustomAuthenticationService, AutenticacionService>()
 builder.Services.AddScoped<ISwimmerService, SwimmerService>();
 #endregion
 
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 //builder.Services.AddHttpContextAccessor();
 

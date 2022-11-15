@@ -24,12 +24,12 @@ namespace TPIntegradorProgIII.Entities
         public string Name { get; set; }
         public string Surname { get; set; }
 
-        public User(int id, string userName, string password, string dNI, string email, string name, string surname)
+        public User(int id, string userName, string password, string dni, string email, string name, string surname)
         {
             Id = id;
             UserName = userName;
             Password = password;
-            DNI = dNI;
+            DNI = dni;
             Email = email;
             Name = name;
             Surname = surname;
