@@ -27,22 +27,22 @@ namespace TPIntegradorProgIII.Controllers
         {
             try
             {
-                List<Swimmer> users = _swimmerRepository.GetUsers();
-                List<SwimmerResponse> usersList = new();
-                foreach (var user in users)
+                List<Swimmer> swimmers = _swimmerRepository.GetSwimmers();
+                List<SwimmerResponse> swimmersList = new();
+                foreach (var swimmer in swimmers)
                 {
                     SwimmerResponse response = new()
                         {
-                            Id = user.Id,
-                            Name = user.Name,
-                            Surname = user.Surname,
-                            UserName = user.UserName,
-                            DNI = user.DNI,
-                            Email = user.Email,
+                            Id = swimmer.Id,
+                            Name = swimmer.Name,
+                            Surname = swimmer.Surname,
+                            UserName = swimmer.UserName,
+                            DNI = swimmer.DNI,
+                            Email = swimmer.Email,
                         };
-                    usersList.Add(response);
+                    swimmersList.Add(response);
                 }
-                return Ok(usersList);
+                return Ok(swimmersList);
             }
             catch (Exception ex)
             {
@@ -56,15 +56,15 @@ namespace TPIntegradorProgIII.Controllers
         {
             try
             {
-                Swimmer? user = _swimmerRepository.GetSingleUser(id);
+                Swimmer? swimmer = _swimmerRepository.GetSingleSwimmer(id);
                 SwimmerResponse response = new()
                 {
-                    Id = user.Id,
-                    Name = user.Name,
-                    Surname = user.Surname,
-                    UserName = user.UserName,
-                    DNI = user.DNI,
-                    Email = user.Email,
+                    Id = swimmer.Id,
+                    Name = swimmer.Name,
+                    Surname = swimmer.Surname,
+                    UserName = swimmer.UserName,
+                    DNI = swimmer.DNI,
+                    Email = swimmer.Email,
                 };
                 return Ok(response);
             }
@@ -81,9 +81,9 @@ namespace TPIntegradorProgIII.Controllers
         {
             try
             {
-                List<Swimmer> users = _swimmerRepository.GetUsers();
-                ValidateDNI(users, request.DNI);
-                Swimmer user = new()
+                List<Swimmer> swimmers = _swimmerRepository.GetSwimmers();
+                ValidateDNI(swimmers, request.DNI);
+                Swimmer swimmer = new()
                 {
                     Name = request.Name,
                     Surname = request.Surname,
@@ -94,15 +94,15 @@ namespace TPIntegradorProgIII.Controllers
                 };
                 SwimmerResponse response = new()
                 {
-                    Id = user.Id,
-                    Name = user.Name,
-                    Surname = user.Surname,
-                    UserName = user.UserName,
-                    DNI = user.DNI,
-                    Email = user.Email,
+                    Id = swimmer.Id,
+                    Name = swimmer.Name,
+                    Surname = swimmer.Surname,
+                    UserName = swimmer.UserName,
+                    DNI = swimmer.DNI,
+                    Email = swimmer.Email,
                 };
-                _swimmerRepository.AddUser(user);
-                return Created("Usuario creado", response);
+                _swimmerRepository.AddSwimmer(swimmer);
+                return Created("Nadador creado", response);
             }
             catch(Exception ex)
             {
@@ -116,23 +116,22 @@ namespace TPIntegradorProgIII.Controllers
         {
             try
             {
-                _swimmerRepository.RemoveUser(id);
-                return Ok("Usuario borrado");
+                _swimmerRepository.RemoveSwimmer(id);
+                return Ok("Nadador borrado");
             }
             catch(Exception ex)
             {
                 return Problem(ex.Message);
             }
-            
         }
 
         [HttpPut]
         [Route("modifySwimmerName/{id}/{newName}")]
-        public IActionResult ModifyName(int id, string newName)
+        public IActionResult ModifySwimmerName(int id, string newName)
         {
             try
             {
-                _swimmerRepository.EditName(id, newName);
+                _swimmerRepository.EditSwimmerName(id, newName);
                 return Ok("Nombre editado");
             }
             catch(Exception ex)
@@ -143,11 +142,11 @@ namespace TPIntegradorProgIII.Controllers
 
         [HttpPut]
         [Route("modifySwimmerSurname/{id}/{newSurname}")]
-        public IActionResult ModifySurname(int id, string newSurname)
+        public IActionResult ModifySwimmerSurname(int id, string newSurname)
         {
             try
             {
-                _swimmerRepository.EditSurname(id, newSurname);
+                _swimmerRepository.EditSwimmerSurname(id, newSurname);
                 return Ok("Apellido editado");
             }
             catch (Exception ex)
@@ -157,9 +156,9 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [NonAction]
-        public void ValidateDNI(List<Swimmer> users, string DNI)
+        public void ValidateDNI(List<Swimmer> swimmers, string DNI)
         {
-            var inUse = users.FirstOrDefault(u => u.DNI == DNI);
+            var inUse = swimmers.FirstOrDefault(u => u.DNI == DNI);
             if (inUse != null)
             {
                 throw new Exception("DNI ya registrado");
