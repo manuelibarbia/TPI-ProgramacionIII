@@ -10,7 +10,7 @@ using TPIntegradorProgIII.DBContexts;
 namespace TPIntegradorProgIII.Migrations
 {
     [DbContext(typeof(TPContext))]
-    [Migration("20221117214653_migracion")]
+    [Migration("20221117222354_migracion")]
     partial class migracion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -144,6 +144,10 @@ namespace TPIntegradorProgIII.Migrations
                     b.Property<int>("MeetId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("MeetName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Style")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -160,6 +164,7 @@ namespace TPIntegradorProgIII.Migrations
                             Id = 1,
                             Distance = 100,
                             MeetId = 1,
+                            MeetName = "Primer Meet",
                             Style = "Croll"
                         },
                         new
@@ -167,6 +172,7 @@ namespace TPIntegradorProgIII.Migrations
                             Id = 2,
                             Distance = 150,
                             MeetId = 2,
+                            MeetName = "Segundo Meet",
                             Style = "Espalda"
                         });
                 });

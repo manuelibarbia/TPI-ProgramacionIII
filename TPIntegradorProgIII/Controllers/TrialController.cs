@@ -29,13 +29,15 @@ namespace TPIntegradorProgIII.Controllers
                 List<Trial> trials = _trialRepository.GetTrials();
                 foreach (var trial in trials)
                 {
-                trial.RegisteredSwimmers = _trialRepository.GetRegisteredSwimmers(trial.Id);
+                    trial.MeetName = _trialRepository.GetTrialMeetName(trial.MeetId);
+                    trial.RegisteredSwimmers = _trialRepository.GetRegisteredSwimmers(trial.Id);
                     TrialResponse response = new()
                     {
                         Id = trial.Id,
                         Distance = trial.Distance,
                         Style = trial.Style,
                         RegisteredSwimmers = trial.RegisteredSwimmers,
+                        MeetName = trial.MeetName
                     };
                     trialsToReturn.Add(response);
                 }
@@ -47,11 +49,13 @@ namespace TPIntegradorProgIII.Controllers
         public IActionResult GetTrialByiD(int id)
         {
             Trial? trial = _trialRepository.GetSingleTrial(id);
+            trial.MeetName = _trialRepository.GetTrialMeetName(trial.MeetId);
             TrialResponse response = new()
             {
                 Id = trial.Id,
                 Distance = trial.Distance,
-                Style = trial.Style
+                Style = trial.Style,
+                MeetName = trial.MeetName
             };
             return Ok(response);
         }
@@ -70,11 +74,12 @@ namespace TPIntegradorProgIII.Controllers
                     Style = request.Style,
                     MeetId = request.MeetId
                 };
+                newTrial.MeetName = _trialRepository.GetTrialMeetName(newTrial.MeetId);
                 TrialResponse response = new()
                 {
                     Distance = newTrial.Distance,
                     Style = newTrial.Style,
-                    MeetId = newTrial.MeetId
+                    MeetName = newTrial.MeetName
                 };
                 _trialRepository.AddTrial(newTrial);
                 return Created("Trial creado", response);

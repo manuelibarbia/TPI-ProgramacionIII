@@ -12,6 +12,8 @@ namespace TPIntegradorProgIII.Data.Repository.Interfaces
         public void EditTrialStyle(int id, string newStyle);
         public List<Meet> GetExistingMeets();
         public List<Swimmer> GetRegisteredSwimmers(int id);
+        public Meet GetTrialMeet(int id);
+        public string GetTrialMeetName(int id);
         //public List<Meet> GetSingleMeet(int id);
     }
 }
