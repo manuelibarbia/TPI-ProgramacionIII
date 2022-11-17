@@ -89,6 +89,7 @@ namespace TPIntegradorProgIII.Controllers
                 ValidateTrialId(trials, request.TrialId);
 
                 List<Swimmer> swimmers = _swimmerRepository.GetSwimmers();
+                ValidateUsername(swimmers, request.UserName);
                 ValidateDNI(swimmers, request.DNI);
                 Swimmer newSwimmer = new()
                 {
@@ -166,9 +167,19 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [NonAction]
+        public void ValidateUsername(List<Swimmer> swimmers, string username)
+        {
+            var inUser = swimmers.FirstOrDefault(s => s.UserName == username);
+            if (inUser != null)
+            {
+                throw new Exception("UserName ya utilizado, elija otro");
+            }
+        }
+
+        [NonAction]
         public void ValidateDNI(List<Swimmer> swimmers, string DNI)
         {
-            var inUse = swimmers.FirstOrDefault(u => u.DNI == DNI);
+            var inUse = swimmers.FirstOrDefault(s => s.DNI == DNI);
             if (inUse != null)
             {
                 throw new Exception("DNI ya registrado");
