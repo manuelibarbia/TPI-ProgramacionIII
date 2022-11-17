@@ -23,6 +23,6 @@ namespace TPIntegradorProgIII.Entities
         public Meet Meet { get; set; }
         public int MeetId { get; set; }
 
-        public ICollection<Swimmer> RegisteredSwimmers { get; set; } = new List<Swimmer>();
+        public List<Swimmer> RegisteredSwimmers { get; set; } = new List<Swimmer>();
     }
 }

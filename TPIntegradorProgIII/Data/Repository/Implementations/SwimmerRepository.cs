@@ -87,5 +87,10 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             var HashPassword = Security.CreateSHA512(dto.Password);
             return _context.Swimmers.SingleOrDefault(u => u.UserName == dto.UserName && u.Password == Security.CreateSHA512(dto.Password));
         }
+
+        public List<Trial> GetExistingTrials()
+        {
+            return _context.Trials.ToList();
+        }
     }
 }

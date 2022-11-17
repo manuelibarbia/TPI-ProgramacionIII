@@ -12,5 +12,6 @@ namespace TPIntegradorProgIII.Data.Repository.Interfaces
         public void EditSwimmerName(int id, string newName);
         public void EditSwimmerSurname(int id, string surname);
         public Swimmer? ValidateSwimmer(AuthenticationRequestBody swimmer);
+        List<Trial> GetExistingTrials();
     }
 }

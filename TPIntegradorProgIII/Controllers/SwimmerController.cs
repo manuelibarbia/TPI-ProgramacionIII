@@ -39,6 +39,7 @@ namespace TPIntegradorProgIII.Controllers
                             UserName = swimmer.UserName,
                             DNI = swimmer.DNI,
                             Email = swimmer.Email,
+                            TrialId = swimmer.TrialId
                         };
                     swimmersList.Add(response);
                 }
@@ -65,6 +66,7 @@ namespace TPIntegradorProgIII.Controllers
                     UserName = swimmer.UserName,
                     DNI = swimmer.DNI,
                     Email = swimmer.Email,
+                    TrialId = swimmer.TrialId
                 };
                 return Ok(response);
             }
@@ -81,6 +83,9 @@ namespace TPIntegradorProgIII.Controllers
         {
             try
             {
+                List<Trial> trials = _swimmerRepository.GetExistingTrials();
+                ValidateTrialId(trials, request.TrialId);
+
                 List<Swimmer> swimmers = _swimmerRepository.GetSwimmers();
                 ValidateDNI(swimmers, request.DNI);
                 Swimmer swimmer = new()
@@ -90,7 +95,8 @@ namespace TPIntegradorProgIII.Controllers
                     UserName = request.UserName,
                     DNI = request.DNI,
                     Password = request.Password,
-                    Email = request.Email
+                    Email = request.Email,
+                    TrialId = request.TrialId
                 };
                 SwimmerResponse response = new()
                 {
@@ -100,6 +106,7 @@ namespace TPIntegradorProgIII.Controllers
                     UserName = swimmer.UserName,
                     DNI = swimmer.DNI,
                     Email = swimmer.Email,
+                    TrialId = swimmer.TrialId
                 };
                 _swimmerRepository.AddSwimmer(swimmer);
                 return Created("Nadador creado", response);
@@ -162,6 +169,16 @@ namespace TPIntegradorProgIII.Controllers
             if (inUse != null)
             {
                 throw new Exception("DNI ya registrado");
+            }
+        }
+
+        [NonAction]
+        public void ValidateTrialId(List<Trial> trials, int trialId)
+        {
+            var trialExists = trials.FirstOrDefault(m => m.Id == trialId);
+            if (trialExists == null)
+            {
+                throw new Exception("Trial no encontrado, revisar Id.");
             }
         }
     }

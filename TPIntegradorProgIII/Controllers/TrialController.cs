@@ -25,21 +25,21 @@ namespace TPIntegradorProgIII.Controllers
         [Route("getAllTrials")]
         public IActionResult GetAllTrials()
         {
+                List<TrialResponse> trialsToReturn = new();
                 List<Trial> trials = _trialRepository.GetTrials();
-                List<TrialResponse> trialsList = new();
                 foreach (var trial in trials)
                 {
+                trial.RegisteredSwimmers = _trialRepository.GetRegisteredSwimmers(trial.Id);
                     TrialResponse response = new()
                     {
                         Id = trial.Id,
                         Distance = trial.Distance,
                         Style = trial.Style,
-                        //TrialMeet = _trialRepository.GetSingleMeet(trial.MeetId)[0],
                         RegisteredSwimmers = trial.RegisteredSwimmers,
                     };
-                    trialsList.Add(response);
+                    trialsToReturn.Add(response);
                 }
-                return Ok(trialsList);
+                return Ok(trialsToReturn);
         }
 
         [HttpGet]
