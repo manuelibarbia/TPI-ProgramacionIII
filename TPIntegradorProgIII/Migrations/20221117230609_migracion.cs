@@ -57,6 +57,7 @@ namespace TPIntegradorProgIII.Migrations
                     Email = table.Column<string>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Surname = table.Column<string>(type: "TEXT", nullable: false),
+                    StyleAndDistance = table.Column<string>(type: "TEXT", nullable: false),
                     TrialId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -92,18 +93,18 @@ namespace TPIntegradorProgIII.Migrations
 
             migrationBuilder.InsertData(
                 table: "Swimmers",
-                columns: new[] { "Id", "DNI", "Email", "Name", "Password", "Surname", "TrialId", "UserName" },
-                values: new object[] { 1, "44555666", "nbologna31@gmail.com", "Nicolas", "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87", "Bologna", 1, "string" });
+                columns: new[] { "Id", "DNI", "Email", "Name", "Password", "StyleAndDistance", "Surname", "TrialId", "UserName" },
+                values: new object[] { 1, "44555666", "nbologna31@gmail.com", "Nicolas", "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87", "Croll 100 metros", "Bologna", 1, "string" });
 
             migrationBuilder.InsertData(
                 table: "Swimmers",
-                columns: new[] { "Id", "DNI", "Email", "Name", "Password", "Surname", "TrialId", "UserName" },
-                values: new object[] { 2, "33444555", "Jperez@gmail.com", "Juan", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Perez", 1, "JuanPe" });
+                columns: new[] { "Id", "DNI", "Email", "Name", "Password", "StyleAndDistance", "Surname", "TrialId", "UserName" },
+                values: new object[] { 2, "33444555", "Jperez@gmail.com", "Juan", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Croll 100 metros", "Perez", 1, "JuanPe" });
 
             migrationBuilder.InsertData(
                 table: "Swimmers",
-                columns: new[] { "Id", "DNI", "Email", "Name", "Password", "Surname", "TrialId", "UserName" },
-                values: new object[] { 3, "55666777", "pgarcia@gmail.com", "Pedro", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Garcia", 2, "PeGarcía" });
+                columns: new[] { "Id", "DNI", "Email", "Name", "Password", "StyleAndDistance", "Surname", "TrialId", "UserName" },
+                values: new object[] { 3, "55666777", "pgarcia@gmail.com", "Pedro", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Espalda 150 metros", "Garcia", 2, "PeGarcía" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Swimmers_TrialId",
