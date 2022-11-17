@@ -92,5 +92,12 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
         {
             return _context.Trials.ToList();
         }
+
+        public string GetTrialStyleAndDistance(int id)
+        {
+            var style = _context.Trials.First(t => t.Id == id).Style;
+            var distance = _context.Trials.First(t => t.Id == id).Distance;
+            return style + " " + distance + " metros";
+        }
     }
 }

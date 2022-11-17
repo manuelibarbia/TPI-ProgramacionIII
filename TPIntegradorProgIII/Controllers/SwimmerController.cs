@@ -27,10 +27,11 @@ namespace TPIntegradorProgIII.Controllers
         {
             try
             {
+                List<SwimmerResponse> swimmersToReturn = new();
                 List<Swimmer> swimmers = _swimmerRepository.GetSwimmers();
-                List<SwimmerResponse> swimmersList = new();
                 foreach (var swimmer in swimmers)
                 {
+                    swimmer.StyleAndDistance = _swimmerRepository.GetTrialStyleAndDistance(swimmer.TrialId);
                     SwimmerResponse response = new()
                         {
                             Id = swimmer.Id,
@@ -39,11 +40,11 @@ namespace TPIntegradorProgIII.Controllers
                             UserName = swimmer.UserName,
                             DNI = swimmer.DNI,
                             Email = swimmer.Email,
-                            TrialId = swimmer.TrialId
+                            StyleAndDistance = swimmer.StyleAndDistance,
                         };
-                    swimmersList.Add(response);
+                    swimmersToReturn.Add(response);
                 }
-                return Ok(swimmersList);
+                return Ok(swimmersToReturn);
             }
             catch (Exception ex)
             {
@@ -58,6 +59,7 @@ namespace TPIntegradorProgIII.Controllers
             try
             {
                 Swimmer? swimmer = _swimmerRepository.GetSingleSwimmer(id);
+                swimmer.StyleAndDistance = _swimmerRepository.GetTrialStyleAndDistance(swimmer.TrialId);
                 SwimmerResponse response = new()
                 {
                     Id = swimmer.Id,
@@ -66,7 +68,7 @@ namespace TPIntegradorProgIII.Controllers
                     UserName = swimmer.UserName,
                     DNI = swimmer.DNI,
                     Email = swimmer.Email,
-                    TrialId = swimmer.TrialId
+                    StyleAndDistance= swimmer.StyleAndDistance
                 };
                 return Ok(response);
             }
@@ -88,7 +90,7 @@ namespace TPIntegradorProgIII.Controllers
 
                 List<Swimmer> swimmers = _swimmerRepository.GetSwimmers();
                 ValidateDNI(swimmers, request.DNI);
-                Swimmer swimmer = new()
+                Swimmer newSwimmer = new()
                 {
                     Name = request.Name,
                     Surname = request.Surname,
@@ -98,17 +100,18 @@ namespace TPIntegradorProgIII.Controllers
                     Email = request.Email,
                     TrialId = request.TrialId
                 };
+                newSwimmer.StyleAndDistance = _swimmerRepository.GetTrialStyleAndDistance(newSwimmer.TrialId);
                 SwimmerResponse response = new()
                 {
-                    Id = swimmer.Id,
-                    Name = swimmer.Name,
-                    Surname = swimmer.Surname,
-                    UserName = swimmer.UserName,
-                    DNI = swimmer.DNI,
-                    Email = swimmer.Email,
-                    TrialId = swimmer.TrialId
+                    Id = newSwimmer.Id,
+                    Name = newSwimmer.Name,
+                    Surname = newSwimmer.Surname,
+                    UserName = newSwimmer.UserName,
+                    DNI = newSwimmer.DNI,
+                    Email = newSwimmer.Email,
+                    StyleAndDistance = newSwimmer.StyleAndDistance
                 };
-                _swimmerRepository.AddSwimmer(swimmer);
+                _swimmerRepository.AddSwimmer(newSwimmer);
                 return Created("Nadador creado", response);
             }
             catch(Exception ex)

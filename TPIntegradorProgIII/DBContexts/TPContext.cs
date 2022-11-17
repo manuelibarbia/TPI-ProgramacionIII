@@ -71,6 +71,7 @@ namespace TPIntegradorProgIII.DBContexts
                 UserName = "string",
                 DNI = "44555666",
                 TrialId = 1,
+                StyleAndDistance = trial1.Style + " " + trial1.Distance + " metros"
             };
 
             Swimmer swimmer2 = new Swimmer()
@@ -82,7 +83,8 @@ namespace TPIntegradorProgIII.DBContexts
                 Password = "123456",
                 UserName = "JuanPe",
                 DNI = "33444555",
-                TrialId = 1
+                TrialId = 1,
+                StyleAndDistance = trial1.Style + " " + trial1.Distance + " metros"
             };
 
             Swimmer swimmer3 = new Swimmer()
@@ -94,7 +96,8 @@ namespace TPIntegradorProgIII.DBContexts
                 Password = "123456",
                 UserName = "PeGarcía",
                 DNI = "55666777",
-                TrialId = 2
+                TrialId = 2,
+                StyleAndDistance = trial2.Style + " " + trial2.Distance + " metros"
             };
 
             modelBuilder.Entity<Swimmer>().HasData(

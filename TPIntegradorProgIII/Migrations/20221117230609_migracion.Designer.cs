@@ -10,7 +10,7 @@ using TPIntegradorProgIII.DBContexts;
 namespace TPIntegradorProgIII.Migrations
 {
     [DbContext(typeof(TPContext))]
-    [Migration("20221117222354_migracion")]
+    [Migration("20221117230609_migracion")]
     partial class migracion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,6 +79,10 @@ namespace TPIntegradorProgIII.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("StyleAndDistance")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -104,6 +108,7 @@ namespace TPIntegradorProgIII.Migrations
                             Email = "nbologna31@gmail.com",
                             Name = "Nicolas",
                             Password = "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87",
+                            StyleAndDistance = "Croll 100 metros",
                             Surname = "Bologna",
                             TrialId = 1,
                             UserName = "string"
@@ -115,6 +120,7 @@ namespace TPIntegradorProgIII.Migrations
                             Email = "Jperez@gmail.com",
                             Name = "Juan",
                             Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
+                            StyleAndDistance = "Croll 100 metros",
                             Surname = "Perez",
                             TrialId = 1,
                             UserName = "JuanPe"
@@ -126,6 +132,7 @@ namespace TPIntegradorProgIII.Migrations
                             Email = "pgarcia@gmail.com",
                             Name = "Pedro",
                             Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
+                            StyleAndDistance = "Espalda 150 metros",
                             Surname = "Garcia",
                             TrialId = 2,
                             UserName = "PeGarcía"
