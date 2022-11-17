@@ -94,6 +94,16 @@ namespace TPIntegradorProgIII.Data.Repository
             return _context.Swimmers.Where(s => s.TrialId == id).ToList();
         }
 
+        public Meet GetTrialMeet(int id)
+        {
+            return _context.Meets.First(m => m.Id == id);
+        }
+
+        public string GetTrialMeetName(int id)
+        {
+            return _context.Meets.First(m => m.Id == id).MeetName;
+        }
+
         //public string GetSingleMeet(int id)
         //{
         //    return _context.Meets.Name.Where(x => x.Id == id);

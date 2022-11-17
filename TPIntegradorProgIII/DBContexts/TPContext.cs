@@ -44,7 +44,8 @@ namespace TPIntegradorProgIII.DBContexts
                 Id = 1,
                 Distance = 100,
                 Style = "Croll",
-                MeetId = meet1.Id
+                MeetId = meet1.Id,
+                MeetName = meet1.MeetName
             };
 
             Trial trial2 = new Trial()
@@ -52,7 +53,8 @@ namespace TPIntegradorProgIII.DBContexts
                 Id = 2,
                 Distance = 150,
                 Style = "Espalda",
-                MeetId = meet2.Id
+                MeetId = meet2.Id,
+                MeetName = meet2.MeetName
             };
 
             modelBuilder.Entity<Trial>().HasData(

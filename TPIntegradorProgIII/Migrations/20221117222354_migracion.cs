@@ -31,6 +31,7 @@ namespace TPIntegradorProgIII.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Distance = table.Column<int>(type: "INTEGER", nullable: false),
                     Style = table.Column<string>(type: "TEXT", nullable: false),
+                    MeetName = table.Column<string>(type: "TEXT", nullable: false),
                     MeetId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -81,13 +82,13 @@ namespace TPIntegradorProgIII.Migrations
 
             migrationBuilder.InsertData(
                 table: "Trials",
-                columns: new[] { "Id", "Distance", "MeetId", "Style" },
-                values: new object[] { 1, 100, 1, "Croll" });
+                columns: new[] { "Id", "Distance", "MeetId", "MeetName", "Style" },
+                values: new object[] { 1, 100, 1, "Primer Meet", "Croll" });
 
             migrationBuilder.InsertData(
                 table: "Trials",
-                columns: new[] { "Id", "Distance", "MeetId", "Style" },
-                values: new object[] { 2, 150, 2, "Espalda" });
+                columns: new[] { "Id", "Distance", "MeetId", "MeetName", "Style" },
+                values: new object[] { 2, 150, 2, "Segundo Meet", "Espalda" });
 
             migrationBuilder.InsertData(
                 table: "Swimmers",

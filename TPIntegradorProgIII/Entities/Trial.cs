@@ -16,7 +16,7 @@ namespace TPIntegradorProgIII.Entities
         public int Distance { get; set; }
         public string Style { get; set; }
 
-
+        public string MeetName { get; set; }
 
         // Cada trial va a pertenecer a un único meet
         [ForeignKey("MeetId")]
