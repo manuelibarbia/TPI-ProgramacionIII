@@ -30,14 +30,15 @@ namespace TPIntegradorProgIII.Controllers
                 List<Meet> meets = _meetRepository.GetMeets();
                 foreach (var meet in meets)
                 {
-                    meet.Trials = _meetRepository.GetTrials(meet.Id);
+                    List<Trial> Trials = _meetRepository.GetTrials(meet.Id);
+                    List<string> MeetTrialsWithData = GetMeetTrialsWithData(Trials);
                     MeetResponse response = new()
                     {
                         Id = meet.Id,
                         MeetName = meet.MeetName,
                         MeetDate = meet.MeetDate,
                         MeetPlace = meet.MeetPlace,
-                        Trials = meet.Trials,
+                        Trials = MeetTrialsWithData
                     };
                     meetsToReturn.Add(response);
                 }
@@ -56,14 +57,15 @@ namespace TPIntegradorProgIII.Controllers
             try
             {
                 Meet? meet = _meetRepository.GetSingleMeet(id);
-                meet.Trials = _meetRepository.GetTrials(meet.Id);
+                List<Trial> Trials = _meetRepository.GetTrials(meet.Id);
+                List<string> MeetTrialsWithData = GetMeetTrialsWithData(Trials);
                 MeetResponse response = new()
                 {
                     MeetName = meet.MeetName,
                     MeetDate = meet.MeetDate,
                     MeetPlace = meet.MeetPlace,
                     Id = meet.Id,
-                    Trials = meet.Trials
+                    Trials = MeetTrialsWithData
                 };
                 return Ok(response);
             }
@@ -128,6 +130,22 @@ namespace TPIntegradorProgIII.Controllers
             {
                 return Problem(ex.Message);
             }
+        }
+
+        [NonAction]
+        public List<string> GetMeetTrialsWithData (List<Trial> trials)
+        {
+            List<string> MeetTrialsWithData = new List<string>();
+            if (trials.Count() == 0)
+            {
+                MeetTrialsWithData.Add("No hay trials asignados a este meet");
+                return MeetTrialsWithData;
+            }
+            foreach (Trial trial in trials)
+            {
+                MeetTrialsWithData.Add("Id: " + trial.Id.ToString() + ", " + trial.Style + " " + trial.Distance + " metros");
+            }
+            return MeetTrialsWithData;
         }
     }
 }
