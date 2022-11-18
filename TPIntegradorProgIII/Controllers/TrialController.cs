@@ -31,18 +31,14 @@ namespace TPIntegradorProgIII.Controllers
                 {
                     trial.MeetName = _trialRepository.GetTrialMeetName(trial.MeetId);
                     List<Swimmer> RegisteredSwimmers = _trialRepository.GetRegisteredSwimmers(trial.Id);
-                    List<string> SwimmersNames = new List<string>();
-                    foreach (var RegisteredSwimmer in RegisteredSwimmers)
-                    {
-                        SwimmersNames.Add("Id: " + RegisteredSwimmer.Id.ToString() + ", " + RegisteredSwimmer.Name + " " +RegisteredSwimmer.Surname);
-                    }
+                    List<string> RegisteredSwimmersNames = GetRegisteredSwimmersNames(RegisteredSwimmers);
                     TrialResponse response = new()
                     {
                         Id = trial.Id,
                         Distance = trial.Distance,
                         Style = trial.Style,
-                        RegisteredSwimmers = SwimmersNames,
-                        MeetName = trial.MeetName
+                        MeetName = trial.MeetName,
+                        RegisteredSwimmers = RegisteredSwimmersNames
                     };
                     trialsToReturn.Add(response);
                 }
@@ -56,18 +52,14 @@ namespace TPIntegradorProgIII.Controllers
             Trial? trial = _trialRepository.GetSingleTrial(id);
             trial.MeetName = _trialRepository.GetTrialMeetName(trial.MeetId);
             List<Swimmer> RegisteredSwimmers = _trialRepository.GetRegisteredSwimmers(trial.Id);
-            List<string> SwimmersNames = new List<string>();
-            foreach (var RegisteredSwimmer in RegisteredSwimmers)
-            {
-                SwimmersNames.Add("Id: " + RegisteredSwimmer.Id.ToString() + ", " + RegisteredSwimmer.Name + " " + RegisteredSwimmer.Surname);
-            }
+            List<string> RegisteredSwimmersNames = GetRegisteredSwimmersNames(RegisteredSwimmers);
             TrialResponse response = new()
             {
                 Id = trial.Id,
                 Distance = trial.Distance,
                 Style = trial.Style,
-                RegisteredSwimmers = SwimmersNames,
-                MeetName = trial.MeetName
+                MeetName = trial.MeetName,
+                RegisteredSwimmers = RegisteredSwimmersNames
             };
             return Ok(response);
         }
@@ -155,6 +147,22 @@ namespace TPIntegradorProgIII.Controllers
             {
                 throw new Exception("Meet no encontrado, revisar Id.");
             }
+        }
+
+        [NonAction]
+        public List<string> GetRegisteredSwimmersNames (List<Swimmer> RegisteredSwimmers)
+        {
+            List<string> RegisteredSwimmersNames = new List<string>();
+            if (RegisteredSwimmers.Count() == 0)
+            {
+                RegisteredSwimmersNames.Add("No hay nadadores registrados en este trial.");
+                return RegisteredSwimmersNames;
+            }
+            foreach (var RegisteredSwimmer in RegisteredSwimmers)
+            {
+                RegisteredSwimmersNames.Add("Id: " + RegisteredSwimmer.Id.ToString() + ", " + RegisteredSwimmer.Name + " " + RegisteredSwimmer.Surname);
+            }
+            return RegisteredSwimmersNames;
         }
     }
 }
