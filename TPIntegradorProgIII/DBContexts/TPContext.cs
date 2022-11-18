@@ -70,8 +70,8 @@ namespace TPIntegradorProgIII.DBContexts
                 Password = "string",
                 UserName = "string",
                 DNI = "44555666",
-                TrialId = 1,
-                StyleAndDistance = trial1.Style + " " + trial1.Distance + " metros"
+                TrialId = trial1.Id,
+                StyleAndDistance = trial1.Style + " " + trial1.Distance + " metros" + " (" + trial1.MeetName + ")"
             };
 
             Swimmer swimmer2 = new Swimmer()
@@ -83,8 +83,8 @@ namespace TPIntegradorProgIII.DBContexts
                 Password = "123456",
                 UserName = "JuanPe",
                 DNI = "33444555",
-                TrialId = 1,
-                StyleAndDistance = trial1.Style + " " + trial1.Distance + " metros"
+                TrialId = trial1.Id,
+                StyleAndDistance = trial1.Style + " " + trial1.Distance + " metros" + " (" + trial1.MeetName + ")"
             };
 
             Swimmer swimmer3 = new Swimmer()
@@ -96,16 +96,16 @@ namespace TPIntegradorProgIII.DBContexts
                 Password = "123456",
                 UserName = "PeGarcía",
                 DNI = "55666777",
-                TrialId = 2,
-                StyleAndDistance = trial2.Style + " " + trial2.Distance + " metros"
+                TrialId = trial2.Id,
+                StyleAndDistance = trial2.Style + " " + trial2.Distance + " metros" + " (" + trial2.MeetName + ")"
             };
 
             modelBuilder.Entity<Swimmer>().HasData(
                 swimmer1, swimmer2, swimmer3);
 
             modelBuilder.Entity<Meet>()
-                .HasMany<Trial>(u => u.Trials)
-                .WithOne(c => c.Meet);
+                .HasMany<Trial>(m => m.Trials)
+                .WithOne(t => t.Meet);
 
             modelBuilder.Entity<Trial>()
                 .HasMany<Swimmer>(t => t.RegisteredSwimmers)

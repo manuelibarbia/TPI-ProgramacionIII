@@ -30,13 +30,18 @@ namespace TPIntegradorProgIII.Controllers
                 foreach (var trial in trials)
                 {
                     trial.MeetName = _trialRepository.GetTrialMeetName(trial.MeetId);
-                    trial.RegisteredSwimmers = _trialRepository.GetRegisteredSwimmers(trial.Id);
+                    List<Swimmer> RegisteredSwimmers = _trialRepository.GetRegisteredSwimmers(trial.Id);
+                    List<string> SwimmersNames = new List<string>();
+                    foreach (var RegisteredSwimmer in RegisteredSwimmers)
+                    {
+                        SwimmersNames.Add("Id: " + RegisteredSwimmer.Id.ToString() + ", " + RegisteredSwimmer.Name + " " +RegisteredSwimmer.Surname);
+                    }
                     TrialResponse response = new()
                     {
                         Id = trial.Id,
                         Distance = trial.Distance,
                         Style = trial.Style,
-                        RegisteredSwimmers = trial.RegisteredSwimmers,
+                        RegisteredSwimmers = SwimmersNames,
                         MeetName = trial.MeetName
                     };
                     trialsToReturn.Add(response);
@@ -50,11 +55,18 @@ namespace TPIntegradorProgIII.Controllers
         {
             Trial? trial = _trialRepository.GetSingleTrial(id);
             trial.MeetName = _trialRepository.GetTrialMeetName(trial.MeetId);
+            List<Swimmer> RegisteredSwimmers = _trialRepository.GetRegisteredSwimmers(trial.Id);
+            List<string> SwimmersNames = new List<string>();
+            foreach (var RegisteredSwimmer in RegisteredSwimmers)
+            {
+                SwimmersNames.Add("Id: " + RegisteredSwimmer.Id.ToString() + ", " + RegisteredSwimmer.Name + " " + RegisteredSwimmer.Surname);
+            }
             TrialResponse response = new()
             {
                 Id = trial.Id,
                 Distance = trial.Distance,
                 Style = trial.Style,
+                RegisteredSwimmers = SwimmersNames,
                 MeetName = trial.MeetName
             };
             return Ok(response);
