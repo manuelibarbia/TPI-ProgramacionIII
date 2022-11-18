@@ -95,9 +95,10 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
 
         public string GetTrialStyleAndDistance(int id)
         {
+            var meetName = _context.Trials.First(t => t.Id == id).MeetName;
             var style = _context.Trials.First(t => t.Id == id).Style;
             var distance = _context.Trials.First(t => t.Id == id).Distance;
-            return style + " " + distance + " metros";
+            return meetName + ": " + style + " " + distance + " metros";
         }
     }
 }
