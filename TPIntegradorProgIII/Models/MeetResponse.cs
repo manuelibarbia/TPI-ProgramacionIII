@@ -9,5 +9,6 @@ namespace TPIntegradorProgIII.Models
         public string MeetDate { get; set; }
         public string MeetPlace { get; set; }
         public List<string> Trials { get; set; } = new List<string>();
+        public List<string> ParticipantSwimmers { get; set; } = new List<string>();
     }
 }
