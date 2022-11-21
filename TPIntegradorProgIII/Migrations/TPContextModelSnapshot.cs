@@ -42,14 +42,14 @@ namespace TPIntegradorProgIII.Migrations
                         new
                         {
                             Id = 1,
-                            MeetDate = "20/12/2022",
+                            MeetDate = "20-12-2022",
                             MeetName = "Primer Meet",
                             MeetPlace = "Rosario"
                         },
                         new
                         {
                             Id = 2,
-                            MeetDate = "25/12/2022",
+                            MeetDate = "25-12-2022",
                             MeetName = "Segundo Meet",
                             MeetPlace = "Buenos Aires"
                         });
@@ -103,11 +103,11 @@ namespace TPIntegradorProgIII.Migrations
                         {
                             Id = 1,
                             DNI = "44555666",
-                            Email = "nbologna31@gmail.com",
-                            Name = "Nicolas",
+                            Email = "manuel@gmail.com",
+                            Name = "Manuel",
                             Password = "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87",
                             StyleAndDistance = "Croll 100 metros (Primer Meet)",
-                            Surname = "Bologna",
+                            Surname = "Ibarbia",
                             TrialId = 1,
                             UserName = "string"
                         },
@@ -115,25 +115,25 @@ namespace TPIntegradorProgIII.Migrations
                         {
                             Id = 2,
                             DNI = "33444555",
-                            Email = "Jperez@gmail.com",
-                            Name = "Juan",
+                            Email = "luciano@gmail.com",
+                            Name = "Luciano",
                             Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
                             StyleAndDistance = "Croll 100 metros (Primer Meet)",
-                            Surname = "Perez",
+                            Surname = "Solar",
                             TrialId = 1,
-                            UserName = "JuanPe"
+                            UserName = "lucianoS"
                         },
                         new
                         {
                             Id = 3,
                             DNI = "55666777",
-                            Email = "pgarcia@gmail.com",
-                            Name = "Pedro",
+                            Email = "santiago@gmail.com",
+                            Name = "Santiago",
                             Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
                             StyleAndDistance = "Espalda 150 metros (Segundo Meet)",
-                            Surname = "Garcia",
+                            Surname = "Caso",
                             TrialId = 2,
-                            UserName = "PeGarcía"
+                            UserName = "santiagoC"
                         });
                 });
 

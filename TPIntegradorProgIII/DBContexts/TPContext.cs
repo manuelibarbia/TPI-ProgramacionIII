@@ -22,7 +22,7 @@ namespace TPIntegradorProgIII.DBContexts
             Meet meet1 = new Meet()
             {
                 Id = 1,
-                MeetDate = "20/12/2022",
+                MeetDate = "20-12-2022",
                 MeetName = "Primer Meet",
                 MeetPlace = "Rosario",
             };
@@ -30,7 +30,7 @@ namespace TPIntegradorProgIII.DBContexts
             Meet meet2 = new Meet()
             {
                 Id = 2,
-                MeetDate = "25/12/2022",
+                MeetDate = "25-12-2022",
                 MeetName = "Segundo Meet",
                 MeetPlace = "Buenos Aires",
             };
@@ -64,9 +64,9 @@ namespace TPIntegradorProgIII.DBContexts
             Swimmer swimmer1 = new Swimmer()
             {
                 Id = 1,
-                Name = "Nicolas",
-                Surname = "Bologna",
-                Email = "nbologna31@gmail.com",
+                Name = "Manuel",
+                Surname = "Ibarbia",
+                Email = "manuel@gmail.com",
                 Password = "string",
                 UserName = "string",
                 DNI = "44555666",
@@ -77,11 +77,11 @@ namespace TPIntegradorProgIII.DBContexts
             Swimmer swimmer2 = new Swimmer()
             {
                 Id = 2,
-                Name = "Juan",
-                Surname = "Perez",
-                Email = "Jperez@gmail.com",
+                Name = "Luciano",
+                Surname = "Solar",
+                Email = "luciano@gmail.com",
                 Password = "123456",
-                UserName = "JuanPe",
+                UserName = "lucianoS",
                 DNI = "33444555",
                 TrialId = trial1.Id,
                 StyleAndDistance = trial1.Style + " " + trial1.Distance + " metros" + " (" + trial1.MeetName + ")"
@@ -90,11 +90,11 @@ namespace TPIntegradorProgIII.DBContexts
             Swimmer swimmer3 = new Swimmer()
             {
                 Id = 3,
-                Name = "Pedro",
-                Surname = "Garcia",
-                Email = "pgarcia@gmail.com",
+                Name = "Santiago",
+                Surname = "Caso",
+                Email = "santiago@gmail.com",
                 Password = "123456",
-                UserName = "PeGarcía",
+                UserName = "santiagoC",
                 DNI = "55666777",
                 TrialId = trial2.Id,
                 StyleAndDistance = trial2.Style + " " + trial2.Distance + " metros" + " (" + trial2.MeetName + ")"
