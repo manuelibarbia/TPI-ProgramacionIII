@@ -78,7 +78,7 @@ namespace TPIntegradorProgIII.DBContexts
             {
                 Id = 2,
                 Name = "Luciano",
-                Surname = "Solar",
+                Surname = "Solari",
                 Email = "luciano@gmail.com",
                 Password = "123456",
                 UserName = "lucianoS",
