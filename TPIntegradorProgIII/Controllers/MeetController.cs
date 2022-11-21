@@ -30,15 +30,17 @@ namespace TPIntegradorProgIII.Controllers
                 List<Meet> meets = _meetRepository.GetMeets();
                 foreach (var meet in meets)
                 {
-                    List<Trial> Trials = _meetRepository.GetTrials(meet.Id);
-                    List<string> MeetTrialsWithData = GetMeetTrialsWithData(Trials);
+                    List<Trial> trials = _meetRepository.GetTrials(meet.Id);
+                    List<string> MeetTrialsWithData = GetMeetTrialsWithData(trials);
+                    List<string> ParticipantSwimmersWithData = GetParticipantSwimmers(trials);
                     MeetResponse response = new()
                     {
                         Id = meet.Id,
                         MeetName = meet.MeetName,
                         MeetDate = meet.MeetDate,
                         MeetPlace = meet.MeetPlace,
-                        Trials = MeetTrialsWithData
+                        Trials = MeetTrialsWithData,
+                        ParticipantSwimmers = ParticipantSwimmersWithData
                     };
                     meetsToReturn.Add(response);
                 }
@@ -146,6 +148,25 @@ namespace TPIntegradorProgIII.Controllers
                 MeetTrialsWithData.Add("Id: " + trial.Id.ToString() + ", " + trial.Style + " " + trial.Distance + " metros");
             }
             return MeetTrialsWithData;
+        }
+
+        [NonAction]
+        public List<string> GetParticipantSwimmers(List<Trial> trials)
+        {
+            List<string> ParticipantSwimmers = new List<string>();
+            if (trials.Count() == 0)
+            {
+                ParticipantSwimmers.Add("No hay trials en este meet, por lo cual no hay participantes.");
+                return ParticipantSwimmers;
+            }
+            foreach (Trial trial in trials)
+            {
+                foreach (Swimmer swimmer in trial.RegisteredSwimmers)
+                {
+                    ParticipantSwimmers.Add("SwimmerId: " + swimmer.Id.ToString() + ", " + swimmer.Name + " " + swimmer.Surname);
+                }
+            }
+            return ParticipantSwimmers;
         }
     }
 }
