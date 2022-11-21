@@ -40,7 +40,7 @@ namespace TPIntegradorProgIII.Controllers
                             UserName = swimmer.UserName,
                             DNI = swimmer.DNI,
                             Email = swimmer.Email,
-                            StyleAndDistance = swimmer.AttendedTrial,
+                            AttendedTrial = swimmer.AttendedTrial,
                         };
                     swimmersToReturn.Add(response);
                 }
@@ -68,7 +68,7 @@ namespace TPIntegradorProgIII.Controllers
                     UserName = swimmer.UserName,
                     DNI = swimmer.DNI,
                     Email = swimmer.Email,
-                    StyleAndDistance = swimmer.AttendedTrial
+                    AttendedTrial = swimmer.AttendedTrial
                 };
                 return Ok(response);
             }
@@ -110,7 +110,7 @@ namespace TPIntegradorProgIII.Controllers
                     UserName = newSwimmer.UserName,
                     DNI = newSwimmer.DNI,
                     Email = newSwimmer.Email,
-                    StyleAndDistance = newSwimmer.AttendedTrial
+                    AttendedTrial = newSwimmer.AttendedTrial
                 };
                 _swimmerRepository.AddSwimmer(newSwimmer);
                 return Created("Nadador creado", response);
