@@ -93,12 +93,14 @@ namespace TPIntegradorProgIII.Data.Repository.Implementations
             return _context.Trials.ToList();
         }
 
-        public string GetTrialStyleAndDistance(int id)
+        public string GetAttendedTrial(int id)
         {
-            var meetName = _context.Trials.First(t => t.Id == id).MeetName;
             var style = _context.Trials.First(t => t.Id == id).Style;
             var distance = _context.Trials.First(t => t.Id == id).Distance;
-            return style + " " + distance + " metros" + " (" + meetName + ")";
+            var meetName = _context.Trials.First(t => t.Id == id).MeetName;
+
+            var attendedTrial = style + " " + distance + " metros" + " (" + meetName + ")";
+            return attendedTrial;
         }
     }
 }

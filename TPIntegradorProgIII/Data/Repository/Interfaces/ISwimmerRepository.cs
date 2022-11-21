@@ -13,6 +13,6 @@ namespace TPIntegradorProgIII.Data.Repository.Interfaces
         public void EditSwimmerSurname(int id, string surname);
         public Swimmer? ValidateSwimmer(AuthenticationRequestBody swimmer);
         List<Trial> GetExistingTrials();
-        public string GetTrialStyleAndDistance(int id);
+        public string GetAttendedTrial(int id);
     }
 }

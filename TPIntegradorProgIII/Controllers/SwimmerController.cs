@@ -31,7 +31,7 @@ namespace TPIntegradorProgIII.Controllers
                 List<Swimmer> swimmers = _swimmerRepository.GetSwimmers();
                 foreach (var swimmer in swimmers)
                 {
-                    swimmer.StyleAndDistance = _swimmerRepository.GetTrialStyleAndDistance(swimmer.TrialId);
+                    swimmer.AttendedTrial = _swimmerRepository.GetAttendedTrial(swimmer.TrialId);
                     SwimmerResponse response = new()
                         {
                             Id = swimmer.Id,
@@ -40,7 +40,7 @@ namespace TPIntegradorProgIII.Controllers
                             UserName = swimmer.UserName,
                             DNI = swimmer.DNI,
                             Email = swimmer.Email,
-                            StyleAndDistance = swimmer.StyleAndDistance,
+                            StyleAndDistance = swimmer.AttendedTrial,
                         };
                     swimmersToReturn.Add(response);
                 }
@@ -59,7 +59,7 @@ namespace TPIntegradorProgIII.Controllers
             try
             {
                 Swimmer? swimmer = _swimmerRepository.GetSingleSwimmer(id);
-                swimmer.StyleAndDistance = _swimmerRepository.GetTrialStyleAndDistance(swimmer.TrialId);
+                swimmer.AttendedTrial = _swimmerRepository.GetAttendedTrial(swimmer.TrialId);
                 SwimmerResponse response = new()
                 {
                     Id = swimmer.Id,
@@ -68,7 +68,7 @@ namespace TPIntegradorProgIII.Controllers
                     UserName = swimmer.UserName,
                     DNI = swimmer.DNI,
                     Email = swimmer.Email,
-                    StyleAndDistance= swimmer.StyleAndDistance
+                    StyleAndDistance = swimmer.AttendedTrial
                 };
                 return Ok(response);
             }
@@ -101,7 +101,7 @@ namespace TPIntegradorProgIII.Controllers
                     Email = request.Email,
                     TrialId = request.TrialId
                 };
-                newSwimmer.StyleAndDistance = _swimmerRepository.GetTrialStyleAndDistance(newSwimmer.TrialId);
+                newSwimmer.AttendedTrial = _swimmerRepository.GetAttendedTrial(newSwimmer.TrialId);
                 SwimmerResponse response = new()
                 {
                     Id = newSwimmer.Id,
@@ -110,7 +110,7 @@ namespace TPIntegradorProgIII.Controllers
                     UserName = newSwimmer.UserName,
                     DNI = newSwimmer.DNI,
                     Email = newSwimmer.Email,
-                    StyleAndDistance = newSwimmer.StyleAndDistance
+                    StyleAndDistance = newSwimmer.AttendedTrial
                 };
                 _swimmerRepository.AddSwimmer(newSwimmer);
                 return Created("Nadador creado", response);
