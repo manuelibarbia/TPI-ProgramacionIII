@@ -23,7 +23,7 @@ namespace TPIntegradorProgIII.Entities
         public string Email { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string StyleAndDistance { get; set; }
+        public string AttendedTrial { get; set; }
 
         [ForeignKey("TrialId")]
         public Trial Trial { get; set; }
