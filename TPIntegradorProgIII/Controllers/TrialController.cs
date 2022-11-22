@@ -30,15 +30,15 @@ namespace TPIntegradorProgIII.Controllers
                 foreach (var trial in trials)
                 {
                     trial.MeetName = _trialRepository.GetTrialMeetName(trial.MeetId);
-                    List<Swimmer> RegisteredSwimmers = _trialRepository.GetRegisteredSwimmers(trial.Id);
-                    List<string> RegisteredSwimmersNames = GetRegisteredSwimmersNames(RegisteredSwimmers);
+                    trial.RegisteredSwimmers = _trialRepository.GetRegisteredSwimmers(trial.Id);
                     TrialResponse response = new()
                     {
                         Id = trial.Id,
                         Distance = trial.Distance,
                         Style = trial.Style,
                         MeetName = trial.MeetName,
-                        RegisteredSwimmers = RegisteredSwimmersNames
+                        RegisteredSwimmers = trial.RegisteredSwimmers,
+                        MeetId = trial.MeetId,
                     };
                     trialsToReturn.Add(response);
                 }
@@ -51,15 +51,15 @@ namespace TPIntegradorProgIII.Controllers
         {
             Trial? trial = _trialRepository.GetSingleTrial(id);
             trial.MeetName = _trialRepository.GetTrialMeetName(trial.MeetId);
-            List<Swimmer> RegisteredSwimmers = _trialRepository.GetRegisteredSwimmers(trial.Id);
-            List<string> RegisteredSwimmersNames = GetRegisteredSwimmersNames(RegisteredSwimmers);
+            trial.RegisteredSwimmers = _trialRepository.GetRegisteredSwimmers(trial.Id);
             TrialResponse response = new()
             {
                 Id = trial.Id,
                 Distance = trial.Distance,
                 Style = trial.Style,
                 MeetName = trial.MeetName,
-                RegisteredSwimmers = RegisteredSwimmersNames
+                RegisteredSwimmers = trial.RegisteredSwimmers,
+                MeetId = trial.MeetId
             };
             return Ok(response);
         }
@@ -147,22 +147,6 @@ namespace TPIntegradorProgIII.Controllers
             {
                 throw new Exception("Meet no encontrado, revisar Id.");
             }
-        }
-
-        [NonAction]
-        public List<string> GetRegisteredSwimmersNames (List<Swimmer> RegisteredSwimmers)
-        {
-            List<string> RegisteredSwimmersNames = new List<string>();
-            if (RegisteredSwimmers.Count() == 0)
-            {
-                RegisteredSwimmersNames.Add("No hay nadadores registrados en este trial.");
-                return RegisteredSwimmersNames;
-            }
-            foreach (var RegisteredSwimmer in RegisteredSwimmers)
-            {
-                RegisteredSwimmersNames.Add("Id: " + RegisteredSwimmer.Id.ToString() + ", " + RegisteredSwimmer.Name + " " + RegisteredSwimmer.Surname);
-            }
-            return RegisteredSwimmersNames;
         }
     }
 }
