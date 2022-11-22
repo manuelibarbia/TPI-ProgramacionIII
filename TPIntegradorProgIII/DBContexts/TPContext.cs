@@ -9,8 +9,6 @@ namespace TPIntegradorProgIII.DBContexts
         public DbSet<Meet> Meets { get; set; } //Los warnings los podemos obviar porque DbContext se encarga de eso.
         public DbSet<Trial> Trials { get; set; }
 
-        //public DbSet<SwimmersTrials> SwimmersTrials { get; set; }
-
         public TPContext(DbContextOptions<TPContext> options) : base(options) //Acá estamos llamando al constructor de DbContext que es el que acepta las opciones
         {
 
@@ -110,35 +108,6 @@ namespace TPIntegradorProgIII.DBContexts
             modelBuilder.Entity<Trial>()
                 .HasMany<Swimmer>(t => t.RegisteredSwimmers)
                 .WithOne(s => s.Trial);
-
-            //modelBuilder.Entity<Trial>()
-            //    .HasMany(s => s.RegisteredSwimmers)
-            //    .WithMany(t => t.TrialsAttended)
-            //    .UsingEntity<SwimmersTrials>(
-            //    st => st.HasOne(prop => prop.Swimmer)
-            //    .WithMany()
-            //    .HasForeignKey(prop => prop.SwimmerId),
-            //    st => st.HasOne(prop => prop.Trial)
-            //    .WithMany()
-            //    .HasForeignKey(prop => prop.TrialId),
-            //    st =>
-            //    {
-            //        st.Property(prop => prop.FechaCreacion).HasDefaultValueSql("GETUTCDATE()");
-            //        st.HasKey(prop => new { prop.SwimmerId, prop.TrialId });
-            //    }
-            // );
-
-            //modelBuilder.Entity<Trial>()
-            //    .HasMany(s => s.RegisteredSwimmers)
-            //    .WithMany(t => t.TrialsAttended)
-            //    .UsingEntity(j => j
-            //        .ToTable("RegisteredSwimmersInTrials")
-            //        .HasData(new[]
-            //            {
-            //                new { RegisteredSwimmersId = 1, TrialsAttendedId = 1},
-            //                new { RegisteredSwimmersId = 1, TrialsAttendedId = 2},
-            //            }
-            //        ));
 
             base.OnModelCreating(modelBuilder);
         }
