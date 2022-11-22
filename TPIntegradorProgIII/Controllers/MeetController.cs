@@ -30,17 +30,14 @@ namespace TPIntegradorProgIII.Controllers
                 List<Meet> meets = _meetRepository.GetMeets();
                 foreach (var meet in meets)
                 {
-                    List<Trial> trials = _meetRepository.GetTrials(meet.Id);
-                    List<string> MeetTrialsWithData = GetMeetTrialsWithData(trials);
-                    List<string> ParticipantSwimmersWithData = GetParticipantSwimmers(trials);
+                    meet.Trials = _meetRepository.GetTrials(meet.Id);
                     MeetResponse response = new()
                     {
                         Id = meet.Id,
                         MeetName = meet.MeetName,
                         MeetDate = meet.MeetDate,
                         MeetPlace = meet.MeetPlace,
-                        Trials = MeetTrialsWithData,
-                        ParticipantSwimmers = ParticipantSwimmersWithData
+                        Trials = meet.Trials,
                     };
                     meetsToReturn.Add(response);
                 }
@@ -59,15 +56,14 @@ namespace TPIntegradorProgIII.Controllers
             try
             {
                 Meet? meet = _meetRepository.GetSingleMeet(id);
-                List<Trial> Trials = _meetRepository.GetTrials(meet.Id);
-                List<string> MeetTrialsWithData = GetMeetTrialsWithData(Trials);
+                meet.Trials = _meetRepository.GetTrials(meet.Id);
                 MeetResponse response = new()
                 {
                     MeetName = meet.MeetName,
                     MeetDate = meet.MeetDate,
                     MeetPlace = meet.MeetPlace,
                     Id = meet.Id,
-                    Trials = MeetTrialsWithData
+                    Trials = meet.Trials
                 };
                 return Ok(response);
             }
@@ -132,41 +128,6 @@ namespace TPIntegradorProgIII.Controllers
             {
                 return Problem(ex.Message);
             }
-        }
-
-        [NonAction]
-        public List<string> GetMeetTrialsWithData (List<Trial> trials)
-        {
-            List<string> MeetTrialsWithData = new List<string>();
-            if (trials.Count() == 0)
-            {
-                MeetTrialsWithData.Add("No hay trials asignados a este meet");
-                return MeetTrialsWithData;
-            }
-            foreach (Trial trial in trials)
-            {
-                MeetTrialsWithData.Add("Id: " + trial.Id.ToString() + ", " + trial.Style + " " + trial.Distance + " metros");
-            }
-            return MeetTrialsWithData;
-        }
-
-        [NonAction]
-        public List<string> GetParticipantSwimmers(List<Trial> trials)
-        {
-            List<string> ParticipantSwimmers = new List<string>();
-            if (trials.Count() == 0)
-            {
-                ParticipantSwimmers.Add("No hay trials en este meet, por lo cual no hay participantes.");
-                return ParticipantSwimmers;
-            }
-            foreach (Trial trial in trials)
-            {
-                foreach (Swimmer swimmer in trial.RegisteredSwimmers)
-                {
-                    ParticipantSwimmers.Add("SwimmerId: " + swimmer.Id.ToString() + ", " + swimmer.Name + " " + swimmer.Surname);
-                }
-            }
-            return ParticipantSwimmers;
         }
     }
 }
