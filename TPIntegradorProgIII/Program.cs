@@ -61,10 +61,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-#region injection
-//builder.Services.AddSingleton<IUserRepository, UserRepository>();
-#endregion
-
 #region Repositories
 builder.Services.AddScoped<IMeetRepository, MeetRepository>();
 builder.Services.AddScoped<ITrialRepository, TrialRepository>();
@@ -78,8 +74,6 @@ builder.Services.AddScoped<ICustomAuthenticationService, AutenticacionService>()
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-//builder.Services.AddHttpContextAccessor();
-
 
 
 var app = builder.Build();
@@ -90,8 +84,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-//builder.Services.AddSingleton<IUserRepository, UserRepository>(); // ¿Lo dejamos? ¿Para qué es?
 
 app.UseHttpsRedirection();
 

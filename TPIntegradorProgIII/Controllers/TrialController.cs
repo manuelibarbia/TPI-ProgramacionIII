@@ -71,7 +71,7 @@ namespace TPIntegradorProgIII.Controllers
             try
             {
                 List<Meet> meets = _trialRepository.GetExistingMeets();
-                ValidateMeetId(meets, request.MeetId); //validamos que el meet al cual se quiere asignar el trial exista
+                ValidateMeetId(meets, request.MeetId);
                 Trial newTrial = new()
                 {
                     Distance = request.Distance,

@@ -27,7 +27,14 @@ namespace TPIntegradorProgIII.Data.Repository
 
         public List<Meet> GetMeets()
         {
-            return _context.Meets.ToList();
+            try
+            {
+                return _context.Meets.ToList();
+            }
+            catch
+            {
+                throw new Exception("No se pudo traer los meets");
+            }
         }
 
         public void AddMeet(Meet newMeet)
