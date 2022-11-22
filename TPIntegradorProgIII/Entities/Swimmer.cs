@@ -28,23 +28,5 @@ namespace TPIntegradorProgIII.Entities
         [ForeignKey("TrialId")]
         public Trial Trial { get; set; }
         public int TrialId { get; set; }
-        //public List<Trial> TrialsAttended { get; set; } = new List<Trial>();
-
-        public Swimmer(int id, string userName, string password, string dni, string email, string name, string surname, int trialId)
-        {
-            Id = id;
-            UserName = userName;
-            Password = password;
-            DNI = dni;
-            Email = email;
-            Name = name;
-            Surname = surname;
-            TrialId = trialId;
-        }
-
-        public Swimmer()
-        {
-
-        }
     }
 }

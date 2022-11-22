@@ -10,7 +10,7 @@ using TPIntegradorProgIII.DBContexts;
 namespace TPIntegradorProgIII.Migrations
 {
     [DbContext(typeof(TPContext))]
-    [Migration("20221122202533_migracion")]
+    [Migration("20221122204304_migracion")]
     partial class migracion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

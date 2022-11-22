@@ -16,7 +16,6 @@ namespace TPIntegradorProgIII.DBContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Declaración de meets por defecto
             Meet meet1 = new Meet()
             {
                 Id = 1,
@@ -36,7 +35,6 @@ namespace TPIntegradorProgIII.DBContexts
             modelBuilder.Entity<Meet>().HasData(
                 meet1, meet2);
 
-            //Declaración de trials por defecto
             Trial trial1 = new Trial()
             {
                 Id = 1,
@@ -58,7 +56,6 @@ namespace TPIntegradorProgIII.DBContexts
             modelBuilder.Entity<Trial>().HasData(
                 trial1, trial2);
 
-            //Declaración de swimmers por defecto
             Swimmer swimmer1 = new Swimmer()
             {
                 Id = 1,
