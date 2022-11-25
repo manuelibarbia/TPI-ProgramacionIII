@@ -19,7 +19,7 @@ namespace TPIntegradorProgIII.Entities
             set { _Password = Security.CreateSHA512(value); }
         }
 
-        public string DNI { get; set; }
+        public int DNI { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
