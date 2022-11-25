@@ -177,7 +177,7 @@ namespace TPIntegradorProgIII.Controllers
         }
 
         [NonAction]
-        public void ValidateDNI(List<Swimmer> swimmers, string DNI)
+        public void ValidateDNI(List<Swimmer> swimmers, int DNI)
         {
             var inUse = swimmers.FirstOrDefault(s => s.DNI == DNI);
             if (inUse != null)

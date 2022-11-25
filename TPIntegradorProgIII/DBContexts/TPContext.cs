@@ -64,7 +64,7 @@ namespace TPIntegradorProgIII.DBContexts
                 Email = "manuel@gmail.com",
                 Password = "string",
                 UserName = "string",
-                DNI = "44555666",
+                DNI = 44555666,
                 TrialId = trial1.Id,
                 AttendedTrial = trial1.Style + " " + trial1.Distance + " metros" + " (" + trial1.MeetName + ")"
             };
@@ -77,7 +77,7 @@ namespace TPIntegradorProgIII.DBContexts
                 Email = "luciano@gmail.com",
                 Password = "123456",
                 UserName = "lucianoS",
-                DNI = "33444555",
+                DNI = 33444555,
                 TrialId = trial1.Id,
                 AttendedTrial = trial1.Style + " " + trial1.Distance + " metros" + " (" + trial1.MeetName + ")"
             };
@@ -90,7 +90,7 @@ namespace TPIntegradorProgIII.DBContexts
                 Email = "santiago@gmail.com",
                 Password = "123456",
                 UserName = "santiagoC",
-                DNI = "55666777",
+                DNI = 55666777,
                 TrialId = trial2.Id,
                 AttendedTrial = trial2.Style + " " + trial2.Distance + " metros" + " (" + trial2.MeetName + ")"
             };
