@@ -5,9 +5,9 @@ namespace TPIntegradorProgIII.DBContexts
 {
     public class TPContext : DbContext
     {
-        public DbSet<Swimmer> Swimmers { get; set; } //lo que hagamos con LINQ sobre estos DbSets lo va a transformar en consultas SQL
-        public DbSet<Meet> Meets { get; set; } //Los warnings los podemos obviar porque DbContext se encarga de eso.
-        public DbSet<Trial> Trials { get; set; }
+        public DbSet<Student> Swimmers { get; set; } //lo que hagamos con LINQ sobre estos DbSets lo va a transformar en consultas SQL
+        public DbSet<Company> Meets { get; set; } //Los warnings los podemos obviar porque DbContext se encarga de eso.
+        public DbSet<Offer> Trials { get; set; }
 
         public TPContext(DbContextOptions<TPContext> options) : base(options) //Acá estamos llamando al constructor de DbContext que es el que acepta las opciones
         {
@@ -16,7 +16,7 @@ namespace TPIntegradorProgIII.DBContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            Meet meet1 = new Meet()
+            Company meet1 = new Company()
             {
                 Id = 1,
                 MeetDate = "20-12-2022",
@@ -24,7 +24,7 @@ namespace TPIntegradorProgIII.DBContexts
                 MeetPlace = "Rosario",
             };
 
-            Meet meet2 = new Meet()
+            Company meet2 = new Company()
             {
                 Id = 2,
                 MeetDate = "25-12-2022",
@@ -32,10 +32,10 @@ namespace TPIntegradorProgIII.DBContexts
                 MeetPlace = "Buenos Aires",
             };
 
-            modelBuilder.Entity<Meet>().HasData(
+            modelBuilder.Entity<Company>().HasData(
                 meet1, meet2);
 
-            Trial trial1 = new Trial()
+            Offer trial1 = new Offer()
             {
                 Id = 1,
                 Distance = 100,
@@ -44,7 +44,7 @@ namespace TPIntegradorProgIII.DBContexts
                 MeetName = meet1.MeetName
             };
 
-            Trial trial2 = new Trial()
+            Offer trial2 = new Offer()
             {
                 Id = 2,
                 Distance = 150,
@@ -53,10 +53,10 @@ namespace TPIntegradorProgIII.DBContexts
                 MeetName = meet2.MeetName
             };
 
-            modelBuilder.Entity<Trial>().HasData(
+            modelBuilder.Entity<Offer>().HasData(
                 trial1, trial2);
 
-            Swimmer swimmer1 = new Swimmer()
+            Student swimmer1 = new Student()
             {
                 Id = 1,
                 Name = "Manuel",
@@ -69,7 +69,7 @@ namespace TPIntegradorProgIII.DBContexts
                 AttendedTrial = trial1.Style + " " + trial1.Distance + " metros" + " (" + trial1.MeetName + ")"
             };
 
-            Swimmer swimmer2 = new Swimmer()
+            Student swimmer2 = new Student()
             {
                 Id = 2,
                 Name = "Luciano",
@@ -82,7 +82,7 @@ namespace TPIntegradorProgIII.DBContexts
                 AttendedTrial = trial1.Style + " " + trial1.Distance + " metros" + " (" + trial1.MeetName + ")"
             };
 
-            Swimmer swimmer3 = new Swimmer()
+            Student swimmer3 = new Student()
             {
                 Id = 3,
                 Name = "Santiago",
@@ -95,15 +95,15 @@ namespace TPIntegradorProgIII.DBContexts
                 AttendedTrial = trial2.Style + " " + trial2.Distance + " metros" + " (" + trial2.MeetName + ")"
             };
 
-            modelBuilder.Entity<Swimmer>().HasData(
+            modelBuilder.Entity<Student>().HasData(
                 swimmer1, swimmer2, swimmer3);
 
-            modelBuilder.Entity<Meet>()
-                .HasMany<Trial>(m => m.Trials)
+            modelBuilder.Entity<Company>()
+                .HasMany<Offer>(m => m.Trials)
                 .WithOne(t => t.Meet);
 
-            modelBuilder.Entity<Trial>()
-                .HasMany<Swimmer>(t => t.RegisteredSwimmers)
+            modelBuilder.Entity<Offer>()
+                .HasMany<Student>(t => t.RegisteredSwimmers)
                 .WithOne(s => s.Trial);
 
             base.OnModelCreating(modelBuilder);
