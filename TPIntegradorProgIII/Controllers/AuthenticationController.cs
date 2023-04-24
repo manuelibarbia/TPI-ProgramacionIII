@@ -13,9 +13,9 @@ namespace TPIntegradorProgIII.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IConfiguration _config;
-        private readonly IStudentRepository _swimmerRepository;
+        private readonly ISwimmerRepository _swimmerRepository;
 
-        public AuthenticationController(IConfiguration config, IStudentRepository swimmerRepository)
+        public AuthenticationController(IConfiguration config, ISwimmerRepository swimmerRepository)
         {
             _config = config; //Hacemos la inyección para poder usar el appsettings.json
             this._swimmerRepository = swimmerRepository;
@@ -25,6 +25,8 @@ namespace TPIntegradorProgIII.Controllers
         [HttpPost("authenticate")] //Vamos a usar un POST ya que debemos enviar los datos para hacer el login
         public ActionResult<string> Autenticar(AuthenticationRequestBody authenticationRequestBody) //Enviamos como parámetro la clase que creamos arriba
         {
+
+
             //Paso 1: Validamos las credenciales
             var swimmer = _swimmerRepository.ValidateSwimmer(authenticationRequestBody); //Lo primero que hacemos es llamar a una función que valide los parámetros que enviamos.
 

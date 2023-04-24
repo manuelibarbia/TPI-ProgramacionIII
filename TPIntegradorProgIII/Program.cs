@@ -62,9 +62,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 #region Repositories
-builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
-builder.Services.AddScoped<IOfferRepository, OfferRepository>();
-builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<IMeetRepository, MeetRepository>();
+builder.Services.AddScoped<ITrialRepository, TrialRepository>();
+builder.Services.AddScoped<ISwimmerRepository, SwimmerRepository>();
 #endregion
 
 #region Services
